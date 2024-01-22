@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+table{
+    width: 100%;
+}
+
+table thead th {
+    font-size: 1.9rem;
+    text-align: center;
+    padding: .8rem;
+    background: #D2691E;
+    color: #FFFFFF;
+}
+
+table tbody td {
+    font-size: 1.4rem;
+    text-align: left;
+    padding: 1.2rem;
+    border: 2px solid gray;
+}
+
+table tbody td img {
+    width: 180;
+    height: 200px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}

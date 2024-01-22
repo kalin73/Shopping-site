@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Payment</title>
+    <link rel="icon" type="image/icon" href="/images/logo.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/payment.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+</head>
+
+<body>
+<div class="container">
+    <form th:method="POST" th:action="@{/billingAddress}">
+        <div class="row">
+            <div class="col">
+                <h3 class="title">Billing Address</h3>
+                <div class="inputBox">
+                    <span>Full Name: </span>
+                    <input type="text" name="fullName"/>
+                </div>
+                <div class="inputBox">
+                    <span>Phone number: </span>
+                    <input type="text" name="phoneNumber"/>
+                </div>
+                <div class="inputBox">
+                    <span>Country: </span>
+                    <input type="text" name="country"/>
+                </div>
+                <div class="inputBox">
+                    <span>City: </span>
+                    <input type="text" name="city"/>
+                </div>
+                <div class="inputBox">
+                    <span>Address: </span>
+                    <input type="text" name="address"/>
+                </div>
+
+            </div>
+        </div>
+        <input type="submit" value="Proceed to checkout" class="submit-btn"/>
+    </form>
+</div>
+</body>
+
+</html>

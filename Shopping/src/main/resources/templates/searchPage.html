@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Searching</title>
+    <link rel="icon" type="image/icon" href="/images/logo.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/searchPage.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+</head>
+
+<body>
+<header th:replace="~{fragments/header}"></header>
+
+
+<div class="gallery">
+    <div class="productContent" th:each="product : ${products}" th:object="${product}">
+        <h3 th:text="*{productName}"></h3>
+        <a th:href="@{/products/info/{id}(id=*{id})}"><img th:src="*{image}"/></a>
+        <h3 th:text="*{price}">.lv</h3>
+        <a class="btn" href="/add/{id}(id=*{id})">Add to cart</a>
+    </div>
+</div>
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script type="text/javascript" src="/js/shopping.js"></script>
+</body>
+
+</html>

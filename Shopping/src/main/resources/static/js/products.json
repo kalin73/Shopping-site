@@ -1,0 +1,891 @@
+[
+  {
+    "productName": "ASUS VIVOBOOK",
+    "price": 1399.0,
+    "description": "Good laptop",
+    "quantity": 10,
+    "image": "/images/asus.png",
+    "category": {
+      "id": 5,
+      "name": "LAPTOPS"
+    }
+  },
+  {
+    "productName": "Acer NITRO 5",
+    "price": 1299.0,
+    "description": "Good smartphone",
+    "quantity": 15,
+    "image": "/images/acer.png",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "ASUS VIVOBOOK 5",
+    "price": 2000.0,
+    "description": "Good smartphone",
+    "quantity": 14,
+    "image": "/images/huaweiP50.png",
+    "category": {
+      "id": 2,
+      "name": "LAPTOPS"
+    }
+  },
+  {
+    "productName": "ACER VERITON S2680G",
+    "price": 599.0,
+    "description": "Офис настолен компютър ACER VERITON S2680G DT.VV2EX.003 HDD 1000 GB, INTEL PENTIUM GOLD G6405, INTEL UHD GRAPHICS 610, 8 GB, 3200 MHz",
+    "quantity": 11,
+    "image": "/images/computer Page/comp1.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "8GB"
+      },
+      {
+        "name": "CPU",
+        "value": "INTEL PENTIUM GOLD G6405"
+      },
+      {
+        "name": "GPU",
+        "value": "INTEL UHD GRAPHICS 610"
+      },
+      {
+        "name": "SSD",
+        "value": "256GB"
+      },
+      {
+        "name": "Power",
+        "value": "180 W"
+      },
+      {
+        "name": "Operation system",
+        "value": "Windows 10"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "APPLE MAC MINI",
+    "price": 999.0,
+    "description": "Good computer",
+    "quantity": 17,
+    "image": "/images/computer Page/comp4.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "8GB"
+      },
+      {
+        "name": "CPU",
+        "value": "APPLE M1 8 CORE"
+      },
+      {
+        "name": "GPU",
+        "value": "INTEGRATED 8-CORE GPU"
+      },
+      {
+        "name": "SSD",
+        "value": "256GB"
+      },
+      {
+        "name": "Power",
+        "value": "180 W"
+      },
+      {
+        "name": "Operation system",
+        "value": "MAC OS"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "ACER Nitro N50-640",
+    "price": 1599.0,
+    "description": "Good computer",
+    "quantity": 12,
+    "image": "/images/computer Page/comp2.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "16GB"
+      },
+      {
+        "name": "CPU",
+        "value": "INTEL CORE I5-12400F"
+      },
+      {
+        "name": "GPU",
+        "value": "NVIDIA GEFORCE GTX 1660 SUPER"
+      },
+      {
+        "name": "SSD",
+        "value": "512GB"
+      },
+      {
+        "name": "Power",
+        "value": "500 W"
+      },
+      {
+        "name": "Operation system",
+        "value": "Windows 11"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "ASUS G10CE-21403",
+    "price": 1599.0,
+    "description": "Good computer",
+    "quantity": 12,
+    "image": "/images/computer Page/comp5.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "16GB"
+      },
+      {
+        "name": "CPU",
+        "value": "INTEL CORE I5-11400F"
+      },
+      {
+        "name": "GPU",
+        "value": "NVIDIA GeForce GTX1660Ti"
+      },
+      {
+        "name": "SSD",
+        "value": "512GB"
+      },
+      {
+        "name": "Power",
+        "value": "500 W"
+      },
+      {
+        "name": "Operation system",
+        "value": "Windows 11"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "ACER PREDATOR PO3-630",
+    "price": 2399.0,
+    "description": "Good computer",
+    "quantity": 7,
+    "image": "/images/computer Page/comp3.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "16GB"
+      },
+      {
+        "name": "CPU",
+        "value": "NTEL CORE I5-11400F"
+      },
+      {
+        "name": "GPU",
+        "value": "NVIDIA GeForce RTX 3070"
+      },
+      {
+        "name": "SSD",
+        "value": "1024GB"
+      },
+      {
+        "name": "Power",
+        "value": "500 W"
+      },
+      {
+        "name": "Operation system",
+        "value": "None"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "ASUS ROG Strix G15DK-WB5520",
+    "price": 2199.0,
+    "description": "Good computer",
+    "quantity": 7,
+    "image": "/images/computer Page/comp6.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "16GB"
+      },
+      {
+        "name": "CPU",
+        "value": "AMD RYZEN 5 5600X"
+      },
+      {
+        "name": "GPU",
+        "value": "NVIDIA GEFORCE RTX 3050"
+      },
+      {
+        "name": "SSD",
+        "value": "1024GB"
+      },
+      {
+        "name": "HDD",
+        "value": "1000GB"
+      },
+      {
+        "name": "Power",
+        "value": "500 W"
+      },
+      {
+        "name": "Operation system",
+        "value": "None"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "GPLAY OFFICETHON",
+    "price": 599.0,
+    "description": "Good computer",
+    "quantity": 20,
+    "image": "/images/computer Page/comp7.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "8GB"
+      },
+      {
+        "name": "CPU",
+        "value": "INTEL CELERON J3355"
+      },
+      {
+        "name": "GPU",
+        "value": "NTEL HD GRAPHICS 500"
+      },
+      {
+        "name": "SSD",
+        "value": "512GB"
+      },
+      {
+        "name": "Power",
+        "value": "500 W"
+      },
+      {
+        "name": "Operation system",
+        "value": "Windows 10"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "LENOVO T540-15ICK",
+    "price": 999.0,
+    "description": "Good computer",
+    "quantity": 15,
+    "image": "/images/computer Page/comp8.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "8GB"
+      },
+      {
+        "name": "CPU",
+        "value": "INTEL CORE I5-9400F"
+      },
+      {
+        "name": "GPU",
+        "value": "NVIDIA GeForce GTX1660"
+      },
+      {
+        "name": "HDD",
+        "value": "1000GB"
+      },
+      {
+        "name": "SSD",
+        "value": "256GB"
+      },
+      {
+        "name": "Power",
+        "value": "310 W"
+      },
+      {
+        "name": "Operation system",
+        "value": "None"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "Dell OptiPlex 7010",
+    "price": 1469.0,
+    "description": "Good computer",
+    "quantity": 10,
+    "image": "/images/computer Page/comp9.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "8GB"
+      },
+      {
+        "name": "CPU",
+        "value": "INTEL CORE I5-3570"
+      },
+      {
+        "name": "GPU",
+        "value": "Intel HD Graphics 2500"
+      },
+      {
+        "name": "HDD",
+        "value": "1TB"
+      },
+      {
+        "name": "SSD",
+        "value": "512GB"
+      },
+      {
+        "name": "Power",
+        "value": "500 W"
+      },
+      {
+        "name": "Operation system",
+        "value": "Windows 10"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "HP Z440 Workstation",
+    "price": 2439.0,
+    "description": "Good computer",
+    "quantity": 16,
+    "image": "/images/computer Page/comp10.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "32GB"
+      },
+      {
+        "name": "CPU",
+        "value": "INTEL XEON E5-1620"
+      },
+      {
+        "name": "GPU",
+        "value": "Intel HD Graphics 2500"
+      },
+      {
+        "name": "HDD",
+        "value": "1TB"
+      },
+      {
+        "name": "Power",
+        "value": "310 W"
+      },
+      {
+        "name": "Operation system",
+        "value": "None"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "MSI Cubi N ADL-002EU",
+    "price": 459.0,
+    "description": "Good computer",
+    "quantity": 12,
+    "image": "/images/computer Page/comp11.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "16GB"
+      },
+      {
+        "name": "CPU",
+        "value": "INTEL N200"
+      },
+      {
+        "name": "GPU",
+        "value": "Intel UHD Graphics Xe 750 32EUs"
+      },
+      {
+        "name": "SSD",
+        "value": "128GB"
+      },
+      {
+        "name": "Power",
+        "value": "310 W"
+      },
+      {
+        "name": "Operation system",
+        "value": "Windows 10"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "GIGABYTE Brix BRR3-4300",
+    "price": 499.0,
+    "description": "Good computer",
+    "quantity": 18,
+    "image": "/images/computer Page/comp12.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "32GB"
+      },
+      {
+        "name": "CPU",
+        "value": "AMD Ryzen 3 4300U"
+      },
+      {
+        "name": "GPU",
+        "value": "AMD Radeon RX Vega 5 Graphics"
+      },
+      {
+        "name": "SSD",
+        "value": "1000GB"
+      },
+      {
+        "name": "Power",
+        "value": "310 W"
+      },
+      {
+        "name": "Operation system",
+        "value": "Windows 10"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "GSM PANASONIC KX-TU110",
+    "price": 39.0,
+    "description": "Good Smart Phone",
+    "quantity": 18,
+    "image": "/images/phone Page/phone1.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "GSM MYPHONE HALO",
+    "price": 42.0,
+    "description": "Good Smart Phone",
+    "quantity": 15,
+    "image": "/images/phone Page/phone2.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "GSM MYPHONE HALO 3",
+    "price": 51.0,
+    "description": "Good Smart Phone",
+    "quantity": 11,
+    "image": "/images/phone Page/phone3.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "GSM MYPHONE HAMMER PATRIOT",
+    "price": 79.99,
+    "description": "Good Smart Phone",
+    "quantity": 17,
+    "image": "/images/phone Page/phone5.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "NOKIA C21 PLUS",
+    "price": 109.0,
+    "description": "Good Smart Phone",
+    "quantity": 17,
+    "image": "/images/phone Page/phone6.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "XIAOMI REDMI A2",
+    "price": 129.0,
+    "description": "Good Smart Phone",
+    "quantity": 19,
+    "image": "/images/phone Page/phone7.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "MOTOROLA E13",
+    "price": 135.0,
+    "description": "Good Smart Phone",
+    "quantity": 20,
+    "image": "/images/phone Page/phone8.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "POCO C40",
+    "price": 189.0,
+    "description": "Good Smart Phone",
+    "quantity": 20,
+    "image": "/images/phone Page/phone9.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "HUAWEI NOVA 11i",
+    "price": 369.0,
+    "description": "Good Smart Phone",
+    "quantity": 15,
+    "image": "/images/phone Page/phone10.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "APPLE IPHONE 12",
+    "price": 1109.0,
+    "description": "Good Smart Phone",
+    "quantity": 11,
+    "image": "/images/phone Page/phone11.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "SAMSUNG GALAXY S23 ULTRA",
+    "price": 2099.0,
+    "description": "Good Smart Phone",
+    "quantity": 7,
+    "image": "/images/phone Page/phone12.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "Playstation 5",
+    "price": 999.0,
+    "description": "Конзола PLAYSTATION 5 PS5",
+    "quantity": 20,
+    "image": "/images/consoles/PS5.jpg",
+    "videoUrl": "RkC0l4iekYo",
+    "category": {
+      "id": 6,
+      "name": "CONSOLES"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "GDDR6 16GB, 448GB/s Bandwidth"
+      },
+      {
+        "name": "CPU",
+        "value": "x86-64-AMD Ryzen™ “Zen 2”"
+      },
+      {
+        "name": "GPU",
+        "value": "AMD Radeon™RDNA up to 2.23 GHz"
+      },
+      {
+        "name": "SSD",
+        "value": "SSD 825GB 5.5GB/S"
+      },
+      {
+        "name": "Network",
+        "value": "IEEE 802.11 a/b/g/n/ac/ax"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "Playstation 4 Slim",
+    "price": 549.0,
+    "description": "Конзола Sony Playstation 4 Slim",
+    "quantity": 10,
+    "image": "/images/consoles/PS4.jpg",
+    "category": {
+      "id": 6,
+      "name": "CONSOLES"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "GDDR5 8 GB"
+      },
+      {
+        "name": "CPU",
+        "value": "x86-64 AMD Jaguar"
+      },
+      {
+        "name": "GPU",
+        "value": "1.84 TFLOPS, AMD Radeon"
+      },
+      {
+        "name": "HDD",
+        "value": "500 GB"
+      },
+      {
+        "name": "Network",
+        "value": "802.11 a/b/g/n/ac"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "Playstation 4 Pro",
+    "price": 649.0,
+    "description": "Game console PLAYSTATION 4 PRO",
+    "quantity": 5,
+    "image": "/images/consoles/PS4_PRO.jpg",
+    "category": {
+      "id": 6,
+      "name": "CONSOLES"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "GDDR5 8 GB"
+      },
+      {
+        "name": "CPU",
+        "value": "x86-64 AMD “Jaguar”, 8 core"
+      },
+      {
+        "name": "GPU",
+        "value": "4.20 TFLOPS, AMD Radeon"
+      },
+      {
+        "name": "HDD",
+        "value": "1TB"
+      },
+      {
+        "name": "Network",
+        "value": "IEEE 802.11 b/g/n/ac, Ethernet"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "XBOX SERIES X",
+    "price": 1099.0,
+    "description": "Конзола XBOX SERIES X 1TB CUSTOM NVME SSD",
+    "quantity": 20,
+    "image": "/images/consoles/XBOX-X.png",
+    "category": {
+      "id": 6,
+      "name": "CONSOLES"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "16GB GDDR6 w/320 bit-wide bus"
+      },
+      {
+        "name": "CPU",
+        "value": "8X Cores @ 3.8 GHz"
+      },
+      {
+        "name": "GPU",
+        "value": "12 TFLOPS, 52 CUs @1.825 GHz"
+      },
+      {
+        "name": "SSD",
+        "value": "1TB CUSTOM NVME SSD"
+      },
+      {
+        "name": "Network",
+        "value": "802.11ac dual band"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "XBOX SERIES S",
+    "price": 1099.0,
+    "description": "Конзола XBOX SERIES X 1TB CUSTOM NVME SSD",
+    "quantity": 20,
+    "image": "/images/consoles/XBOX-S.png",
+    "category": {
+      "id": 6,
+      "name": "CONSOLES"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "10GB GDDR6 with 128-bit bus"
+      },
+      {
+        "name": "CPU",
+        "value": "Custom Zen 2, 8 Cores 3.6 GHz"
+      },
+      {
+        "name": "GPU",
+        "value": "4 TFLOPS, 20 CUs @ 1.565 GHz"
+      },
+      {
+        "name": "SSD",
+        "value": "512GB NVME SSD"
+      },
+      {
+        "name": "Network",
+        "value": "Wi-Fi IEEE 802.11ac"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
+    "productName": "APPLE IPAD 10",
+    "price": 999.0,
+    "description": "Таблет APPLE IPAD 10 WIFI SILVER 64 GB, 10.9 \"",
+    "quantity": 20,
+    "image": "/images/IPAD 9 SPACE GREY.jpg",
+    "category": {
+      "id": 4,
+      "name": "TABLETS"
+    },
+    "specs": [
+      {
+        "name": "RAM",
+        "value": "3 GB"
+      },
+      {
+        "name": "CPU",
+        "value": "Apple A14 Bionic 64-Bit"
+      },
+      {
+        "name": "ROM",
+        "value": "64 GB"
+      },
+      {
+        "name": "Screen size",
+        "value": "10.9 \""
+      },
+      {
+        "name": "Resolution",
+        "value": "2360x1640"
+      },
+      {
+        "name": "Network",
+        "value": "802.11A/B/G/N/AC/AX, DUAL BAND"
+      },
+      {
+        "name": "Battery",
+        "value": "Li-pol, 7606 mAh"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  }
+]

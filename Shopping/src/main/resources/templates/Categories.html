@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Shopping</title>
+    <link rel="icon" type="image/icon" href="/images/logo.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/categories.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+</head>
+
+<body>
+<header th:replace="~{fragments/header}"></header>
+
+<div class="gallery">
+    <div class="productContent">
+        <a href="/products/1"> <img src="/images/computer.png"/></a>
+        <h3>Computers</h3>
+        <a href="/products/1" class="btn">Look More</a>
+    </div>
+
+    <div class="productContent">
+        <a href="/products/2"><img src="/images/phone.png"/></a>
+        <h3>Smartphones</h3>
+        <a href="/products/2" class="btn">Look More</a>
+    </div>
+
+    <div class="productContent">
+        <a href="/products/3"><img src="/images/smart_watch.png"/></a>
+        <h3>Smart-watches</h3>
+        <a href="/products/3" class="btn">Look More</a>
+    </div>
+
+    <div class="productContent">
+        <a href="/products/4"> <img src="/images/tablet.png"/></a>
+        <h3>Tablets</h3>
+        <a href="/products/4" class="btn">Look More</a>
+    </div>
+</div>
+
+<div class="gallery">
+    <div class="productContent">
+        <a href="/products/5"><img src="/images/acer.png"/></a>
+        <h3>Laptops</h3>
+        <a href="/products/5" class="btn">Look More</a>
+    </div>
+
+    <div class="productContent">
+        <a href="/products/6"><img src="/images/playstation.png"/></a>
+        <h3>Consoles</h3>
+        <a href="/products/6" class="btn">Look More</a>
+    </div>
+
+    <div class="productContent">
+        <a href="/products/7"><img src="/images/monitor.png"/></a>
+        <h3>Monitors</h3>
+        <a href="/products/7" class="btn">Look More</a>
+    </div>
+
+    <div class="productContent">
+        <a href="/products/8"><img src="/images/usb-flash.png"/></a>
+        <h3>USB - Flash</h3>
+        <a href="/products/8" class="btn">Look More</a>
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/shopping.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+.btn {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: 2rem 2rem;
+    font-size: 1.2rem;
+    border-radius: .5rem;
+    border: .1rem solid #000;
+    color: #000;
+    cursor: pointer;
+    background: none;
+}
+
+.btn:hover {
+    background: #FF8C00;
+    color: #FFF;
+}
+
+@media (max-width: 991px) {
+    html {
+        font-size: 55%;
+    }
+
+    .header {
+        padding: 2rem;
+    }
+
+    section {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    #menu {
+        display: inline-block;
+    }
+
+    .header .search-form {
+        width: 90%;
+    }
+
+    .header .navbar {
+        position: absolute;
+        top: 110%;
+        right: -110%;
+        width: 30rem;
+        box-shadow: #EEE;
+        border-radius: .5rem;
+        background: #FFF;
+    }
+
+    .header .navbar a {
+        font-size: 2rem;
+        margin: 2rem 2.5rem;
+        display: block;
+    }
+
+    .header .navbar.active {
+        right: 2rem;
+        transition: .4s linear;
+    }
+}
+
+@media (max-width: 450px) {
+    html {
+        font-size: 50%;
+    }
+
+    .heading {
+        font-size: 2.5rem;
+    }
+}
+
+#information{
+    width: 100%;
+    display: table;
+}
+
+#information #pictures img{
+    width: 580;
+    height: 600px;
+}
+
+#information #productName{
+    padding: 0px 150px;
+    font-size: 3rem;
+}
+
+#information #productPrice{
+    font-size: 2.6rem;
+    padding-right: 100px;
+    color: #FF0000;
+}
+
+#information #color{
+    background: #F8F8FF;
+}
+
+#information th{
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+#information td{
+    font-size: 1.8rem;
+    text-align: center;
+    border: 1px solid #DCDCDC;
+}
+
+#information .btn {
+    width: 35%;
+    margin-top: 1rem;
+    display: inline-block;
+    padding: 2rem 2rem;
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    border: .1rem solid #000;
+    color: #000;
+    cursor: pointer;
+    background: none;
+}
+
+#information .btn:hover {
+    background: #FF8C00;
+    color: #FFF;
+}
+
+#frame{
+    margin: 20px 300px;
+    width: 1200px;
+    height: 600px;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Shopping - Register</title>
+    <link rel="icon" type="image/icon" href="/images/logo.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/register.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+</head>
+
+<body>
+<div class="container">
+    <div class="center">
+        <h1>Register</h1>
+        <form th:method="POST" th:action="@{/auth/register}" th:object="${registerForm}">
+            <div class="txt_field">
+                <input id="firstName" type="text" name="firstName" th:value="*{firstName}" required>
+                <span></span>
+                <label>First name</label>
+            </div>
+            <p th:if="${#fields.hasErrors('firstName')}"
+               class=" errors alertalert-danger">First name is required!</p>
+            <div class="txt_field">
+                <input id="lastName" type="text" name="lastName" th:value="*{lastName}" required>
+                <span></span>
+                <label>Last name</label>
+            </div>
+            <p th:if="${#fields.hasErrors('lastName')}"
+               class=" errors alertalert-danger">Last name is required!</p>
+            <div class="txt_field">
+                <input type="email" name="email" th:value="*{email}" required>
+                <span></span>
+                <label>Email</label>
+            </div>
+            <p th:if="${#fields.hasErrors('email')}"
+               class=" errors alertalert-danger">Existing email!</p>
+            <div class="txt_field">
+                <input type="password" name="password" required>
+                <span></span>
+                <label>Password</label>
+            </div>
+            <div class="txt_field">
+                <input id="phoneNumber" name="phoneNumber" th:value="*{phoneNumber}" required>
+                <span></span>
+                <label>Phone</label>
+            </div>
+            <p th:if="${#fields.hasErrors('phoneNumber')}"
+               class=" errors alertalert-danger">Invalid phone number!</p>
+            <input name="submit" type="Submit" onclick="return error()" value="Sign Up">
+            <div class="signup_link">
+                Have an Account ? <a href="/auth/login">Login Here</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function error() {
+        const phone = document.getElementById('phoneNumber').value;
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+
+        if (phone.length !== 10) {
+            alert("Error! Phone must be length 10 digits!");
+
+        }
+
+        if (firstName.length < 3 || firstName.length > 10) {
+            alert("Error! Wrong first name!");
+        }
+
+        if (lastName.length < 3 || lastName.length > 10) {
+            alert("Error! Wrong last name!");
+        }
+    }
+</script>
+</body>
+
+</html>

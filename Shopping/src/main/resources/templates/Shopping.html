@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Shopping</title>
+	<link rel="icon" type="image/icon" href="/images/logo.png" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/shopping.css" />
+	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+</head>
+
+<body>
+	<header th:replace="~{fragments/header}"></header>
+
+	<section class="home" id="home">
+		<div class="content">
+			<h3>The latest and <span>most advanced</span> technologies on the market</h3>
+			<p>A wide range of computers, laptops, monitors and all kinds of accessories for every young person.</p>
+			<a href="/categories" class="btn">Shop Now</a>
+		</div>
+	</section>
+
+	<section class="features" id="features">
+		<h1 class="heading">Our <span>Features</span></h1>
+		<div class="boxContainer">
+			<div class="box">
+				<img src="images/courier.png" alt="" width="200" height="170" />
+				<h3>Free delivery</h3>
+				<p>Free shipping anywhere in the world!</p>
+				<a href="#" class="btn">Read More</a>
+			</div>
+			<div class="box">
+				<img src="images/technical.png" alt="" width="220" height="180" />
+				<h3>Free consultation</h3>
+				<p>Free on-site or online consultation!</p>
+				<a href="#" class="btn">Read More</a>
+			</div>
+			<div class="box">
+				<img src="images/technology_medical.png" alt="" width="200" height="180" />
+				<h3>Free repair</h3>
+				<p>Free repair for two years!</p>
+				<a href="#" class="btn">Read More</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="product" id="product">
+		<h1 class="heading">Our<span>Categories</span></h1>
+		<div class="swiper productSlide">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide box">
+					<img src="/images/computer.png" />
+					<h3>Computer</h3>
+					<a href="/products/1" class="btn">Look More</a>
+				</div>
+
+				<div class="swiper-slide box">
+					<img src="/images/phone.png" />
+					<h3>Phone</h3>
+					<a href="/products/2" class="btn">Look More</a>
+				</div>
+
+				<div class="swiper-slide box">
+					<img src="/images/smart_watch.png" />
+					<h3>Smart-watch</h3>
+					<a href="/products/3" class="btn">Look More</a>
+				</div>
+
+				<div class="swiper-slide box">
+					<img src="/images/tablet.png" />
+					<h3>Tablet</h3>
+					<a href="/products/4" class="btn">Look More</a>
+				</div>
+
+				<div class="swiper-slide box">
+					<img src="/images/acer.png" />
+					<h3>Laptop</h3>
+					<a href="/products/5" class="btn">Look More</a>
+				</div>
+
+				<div class="swiper-slide box">
+					<img src="/images/playstation.png" />
+					<h3>Playstation</h3>
+					<a href="/products/6" class="btn">Look More</a>
+				</div>
+
+				<div class="swiper-slide box">
+					<img src="/images/monitor.png" />
+					<h3>Monitor</h3>
+					<a href="/products/7" class="btn">Look More</a>
+				</div>
+
+				<div class="swiper-slide box">
+					<img src="/images/usb-flash.png" />
+					<h3>USB - Flash</h3>
+					<a href="/products/8" class="btn">Look More</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="review" id="review">
+		<h1 class="heading">Customer's <span>reviews</span></h1>
+		<div class="swiper reviewSlide">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide box">
+					<img src="/images/woman.jpg" alt="" />
+					<p>Great products at low prices. The team is at the level. Super happy and would buy from them
+						again.</p>
+					<h3>Nadq Todorova</h3>
+					<div class="stars">
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star-half-alt"></i>
+					</div>
+				</div>
+				<div class="swiper-slide box">
+					<img src="/images/man.jpg" alt="" />
+					<p>Great products at low prices. The team is at the level. Super happy and would buy from them
+						again.</p>
+					<h3>Kalin Ivanov</h3>
+					<div class="stars">
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+					</div>
+				</div>
+				<div class="swiper-slide box">
+					<img src="/images/man1.jpg" alt="" />
+					<p>Great products at low prices. The team is at the level. Super happy and would buy from them
+						again.</p>
+					<h3>Strahil Krustev</h3>
+					<div class="stars">
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+					</div>
+				</div>
+				<div class="swiper-slide box">
+					<img src="/images/woman1.jpeg" alt="" />
+					<p>Great products at low prices. The team is at the level. Super happy and would buy from them
+						again.</p>
+					<h3>Ivana Blagoeva</h3>
+					<div class="stars">
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+					</div>
+				</div>
+				<div class="swiper-slide box">
+					<img src="/images/man2.jpg" alt="" />
+					<p>Great products at low prices. The team is at the level. Super happy and would buy from them
+						again.</p>
+					<h3>Mustafa Ali</h3>
+					<div class="stars">
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star-half-alt"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="technology">
+		<div class="boxContainer">
+			<div class="box">
+				<h3>Shopping</h3>
+				<div class="share">
+					<a href="#" class="fab fa-facebook-f"></a>
+					<a href="#" class="fab fa-twitter"></a>
+					<a href="#" class="fab fa-instagram"></a>
+					<a href="#" class="fab fa-linkedin"></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<h3>Contact</h3>
+				<a href="#" class="links"><i class="fas fa-phone"></i>092/ 000 001</a>
+				<a href="#" class="links"><i class="fas fa-phone"></i>096/ 000 001</a>
+				<a href="#" class="links"><i class="fas fa-envelope"></i>shopping_123@gmail.com</a>
+				<a href="#" class="links"><i class="fas fa-map-marker-alt"></i>Vratsa, Bulgaria - bul. "Hristo Botev"
+					31</a>
+				<a href="#" class="links"><i class="fas fa-map-marker-alt"></i>Montana, Bulgaria - bul. "Treti Mart"
+					15</a>
+			</div>
+
+			<div class="box">
+				<h3>Subscribe</h3>
+				<input type="email" placeholder="Your emil..." class="email" />
+				<input type="submit" value="subscribe" class="btn" />
+				<img src="/images/card.png" class="payment-img" alt="" />
+			</div>
+		</div>
+	</section>
+
+	<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+	<script type="text/javascript" src="/js/shopping.js"></script>
+</body>
+
+</html>
