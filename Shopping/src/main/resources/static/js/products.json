@@ -1,36 +1,118 @@
 [
   {
     "productName": "ASUS VIVOBOOK",
-    "price": 1399.0,
+    "price": 2000.0,
     "description": "Good laptop",
     "quantity": 10,
     "image": "/images/asus.png",
     "category": {
       "id": 5,
       "name": "LAPTOPS"
-    }
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "8GB"
+      },
+      {
+        "name": "CPU",
+        "value": "INTEL I7 12GEN"
+      },
+      {
+        "name": "GPU",
+        "value": "RTX 4070"
+      },
+      {
+        "name": "SSD",
+        "value": "1TB"
+      },
+      {
+        "name": "Power",
+        "value": "250 W"
+      },
+      {
+        "name": "Operation system",
+        "value": "Windows 11"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
   },
   {
     "productName": "Acer NITRO 5",
     "price": 1299.0,
-    "description": "Good smartphone",
+    "description": "Good Laptop",
     "quantity": 15,
     "image": "/images/acer.png",
     "category": {
-      "id": 2,
-      "name": "SMARTPHONES"
-    }
+      "id": 5,
+      "name": "LAPTOPS"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "8GB"
+      },
+      {
+        "name": "CPU",
+        "value": "INTEL I7 12GEN"
+      },
+      {
+        "name": "GPU",
+        "value": "RTX 4070"
+      },
+      {
+        "name": "SSD",
+        "value": "1TB"
+      },
+      {
+        "name": "Power",
+        "value": "250 W"
+      },
+      {
+        "name": "Operation system",
+        "value": "Windows 11"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
   },
   {
-    "productName": "ASUS VIVOBOOK 5",
+    "productName": "HUAWEI P50",
     "price": 2000.0,
     "description": "Good smartphone",
-    "quantity": 14,
+    "quantity": 15,
     "image": "/images/huaweiP50.png",
     "category": {
       "id": 2,
-      "name": "LAPTOPS"
-    }
+      "name": "SMARTPHONES"
+    },
+    "specs": [
+      {
+        "name": "Ram",
+        "value": "8GB"
+      },
+      {
+        "name": "CPU",
+        "value": "SNAPDRAGON"
+      },
+      {
+        "name": "Memory",
+        "value": "256GB"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      },
+      {
+        "name": "Video",
+        "value": "4K@30fps, 1080p@30/60/240fps"
+      }
+    ]
   },
   {
     "productName": "ACER VERITON S2680G",
