@@ -4,82 +4,88 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import com.example.shopping.model.enums.PaymentMethod;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "orders")
 public class OrderEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@ManyToOne
-	private UserEntity customer;
+    @ManyToOne
+    private UserEntity customer;
 
-	@OneToMany(mappedBy = "shoppingOrder")
-	private List<OrderItemEntity> items;
+    @OneToMany(mappedBy = "shoppingOrder")
+    private List<OrderItemEntity> items;
 
-	@Column
-	private LocalDateTime date;
+    @Column
+    private LocalDateTime date;
 
-	@Column(name = "order_cost")
-	private BigDecimal orderCost;
+    @Column(name = "order_cost")
+    private BigDecimal orderCost;
 
-	public OrderEntity() {
+    @Enumerated(EnumType.STRING)
+    @Column(name = "payment_method")
+    private PaymentMethod paymentMethod;
 
-	}
+    public OrderEntity() {
 
-	public Long getId() {
-		return id;
-	}
+    }
 
-	public OrderEntity setId(Long id) {
-		this.id = id;
-		return this;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public UserEntity getCustomer() {
-		return customer;
-	}
+    public OrderEntity setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
-	public OrderEntity setCustomer(UserEntity customer) {
-		this.customer = customer;
-		return this;
-	}
+    public UserEntity getCustomer() {
+        return customer;
+    }
 
-	public List<OrderItemEntity> getItems() {
-		return items;
-	}
+    public OrderEntity setCustomer(UserEntity customer) {
+        this.customer = customer;
+        return this;
+    }
 
-	public OrderEntity setItems(List<OrderItemEntity> items) {
-		this.items = items;
-		return this;
-	}
+    public List<OrderItemEntity> getItems() {
+        return items;
+    }
 
-	public LocalDateTime getDate() {
-		return date;
-	}
+    public OrderEntity setItems(List<OrderItemEntity> items) {
+        this.items = items;
+        return this;
+    }
 
-	public OrderEntity setDate(LocalDateTime date) {
-		this.date = date;
-		return this;
-	}
+    public LocalDateTime getDate() {
+        return date;
+    }
 
-	public BigDecimal getOrderCost() {
-		return orderCost;
-	}
+    public OrderEntity setDate(LocalDateTime date) {
+        this.date = date;
+        return this;
+    }
 
-	public OrderEntity setOrderCost(BigDecimal orderCost) {
-		this.orderCost = orderCost;
-		return this;
-	}
+    public BigDecimal getOrderCost() {
+        return orderCost;
+    }
 
+    public OrderEntity setOrderCost(BigDecimal orderCost) {
+        this.orderCost = orderCost;
+        return this;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public OrderEntity setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+        return this;
+    }
 }
