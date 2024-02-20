@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Order checkout</title>
     <link rel="icon" type="image/icon" href="/images/logo.png" />
-    <link rel="stylesheet" type="text/css" href="../static/css/orderCheckout.css">
+    <link rel="stylesheet" type="text/css" href="/css/orderCheckout.css">
 </head>
 <body>
 <div class="container">
-    <h1 class="form-title">Order chekout</h1>
+    <h1 class="form-title">Order checkout</h1>
     <form th:action="@{/order/placeOrder}" th:method="POST" class="form">
         <div class="main-user-info">
             <div class="user-input-box">
@@ -41,6 +41,6 @@
     </form>
 </div>
 
-<script src="../static/js/checkInformation.js"></script>
+<script src="/js/checkInformation.js"></script>
 </body>
 </html>
