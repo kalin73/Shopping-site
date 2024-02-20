@@ -44,7 +44,7 @@
 			<div class="total">
 				<h3 th:text="'Total: ' + ${total}"></h3>
 			</div>
-			<a href="/checkout" class="btn">Checkout</a>
+			<a href="/order/checkout" class="btn">Checkout</a>
 		</div>
 
 		<form sec:authorize="isAnonymous()" th:action="@{/auth/login}" th:method="POST" class="login">
