@@ -1,20 +1,17 @@
 package com.example.shopping.service;
 
+import com.example.shopping.model.dto.ApplicationUserDetails;
+import com.example.shopping.model.dto.OrderDto;
+import com.example.shopping.model.entity.*;
+import com.example.shopping.model.enums.PaymentMethod;
+import com.example.shopping.repository.*;
+import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.shopping.repository.*;
-import org.springframework.stereotype.Service;
-
-import com.example.shopping.model.entity.OrderEntity;
-import com.example.shopping.model.entity.OrderItemEntity;
-import com.example.shopping.model.entity.ShoppingCartEntity;
-import com.example.shopping.model.entity.ShoppingItemEntity;
-import com.example.shopping.model.entity.UserEntity;
-
-import jakarta.transaction.Transactional;
 
 @Service
 public class OrderService {
@@ -37,19 +34,23 @@ public class OrderService {
     }
 
     @Transactional
-    public void placeOrder(String email) {
-        UserEntity user = this.userRepository.findByEmail(email).get();
+    public void placeOrder(OrderDto orderDto, ApplicationUserDetails client) {
+        final UserEntity user = this.userRepository.findByEmail(client.getUsername()).orElseThrow();
 
-        ShoppingCartEntity cart = this.shoppingCartRepository.findByUser(user).orElse(null);
+        final ShoppingCartEntity cart = this.shoppingCartRepository.findByUser(user).orElseThrow();
 
-        BigDecimal total = calculateTotalCost(cart);
+        final BigDecimal total = calculateTotalCost(cart);
 
         OrderEntity order = new OrderEntity();
-        order.setCustomer(user).setDate(LocalDateTime.now()).setOrderCost(total);
+        order.setCustomer(user)
+                .setDate(LocalDateTime.now())
+                .setOrderCost(total)
+                .setShippingAddress(orderDto.getShippingAddress())
+                .setPaymentMethod(PaymentMethod.valueOf(orderDto.getPaymentMethod()));
 
         order = this.orderRepository.save(order);
 
-        List<OrderItemEntity> items = new ArrayList<>();
+        final List<OrderItemEntity> items = new ArrayList<>();
 
         for (ShoppingItemEntity item : cart.getItems()) {
             items.add(new OrderItemEntity(item.getProduct(), order));
@@ -59,7 +60,7 @@ public class OrderService {
 
         reduceQuantity(cart);
 
-        this.shoppingCartService.deleteCart(email);
+        this.shoppingCartService.deleteCart(client.getUsername());
 
     }
 
