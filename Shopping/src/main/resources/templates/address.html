@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Order checkout</title>
+    <link rel="icon" type="image/icon" href="/images/logo.png" />
+    <link rel="stylesheet" type="text/css" href="../static/css/orderCheckout.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="form-title">Order chekout</h1>
+    <form th:action="@{/order/placeOrder}" th:method="POST" class="form">
+        <div class="main-user-info">
+            <div class="user-input-box">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter Full Name" />
+            </div>
+            <div class="user-input-box">
+                <label for="fullName">Phone number</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number" />
+            </div>
+            <div class="user-input-box">
+                <label for="fullName">Shipping address</label>
+                <input type="text" id="shippingAddress" name="shippingAddress" placeholder="Enter Shipping address" />
+            </div>
+        </div>
+        <div class="patment">
+            <span class="payment-title">Payment Method</span>
+            <div class="payment-category">
+                <input type="radio" id="card" name="paymentMethod" value="CARD" />
+                <label for="card">Card</label>
+                <input type="radio" id="cash" name="paymentMethod" value="CASH" />
+                <label for="cash">Cash</label>
+            </div>
+        </div>
+        <div class="success">
+            <button id="btn">Place order</button>
+        </div>
+    </form>
+</div>
+
+<script src="../static/js/checkInformation.js"></script>
+</body>
+</html>
