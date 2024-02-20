@@ -27,6 +27,9 @@ public class OrderEntity {
     @Column(name = "order_cost")
     private BigDecimal orderCost;
 
+    @Column(name = "shipping_address")
+    private String shippingAddress;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_method")
     private PaymentMethod paymentMethod;
@@ -77,6 +80,15 @@ public class OrderEntity {
 
     public OrderEntity setOrderCost(BigDecimal orderCost) {
         this.orderCost = orderCost;
+        return this;
+    }
+
+    public String getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public OrderEntity setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
         return this;
     }
 
