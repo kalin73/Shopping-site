@@ -1,5 +1,7 @@
 package com.example.shopping.config;
 
+import com.example.shopping.repository.UserRepository;
+import com.example.shopping.service.AuthenticatedUserService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,9 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
-import com.example.shopping.repository.UserRepository;
-import com.example.shopping.service.AuthenticatedUserService;
 
 @Configuration
 public class SecurityConfiguration {
@@ -22,7 +21,7 @@ public class SecurityConfiguration {
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/auth/**", "/", "/add/**", "/api/**", "/products/**", "/reviews", "/product/**", "/categories", "/aboutUs")
                         .permitAll()
-                        .requestMatchers("/deleteCart", "/delete/**", "/checkout", "/profile", "/billingAddress", "/creditCard/**")
+                        .requestMatchers("/deleteCart", "/delete/**", "/order/**", "/profile", "/billingAddress", "/creditCard/**")
                         .authenticated())
                 .formLogin(
                         login -> login.loginPage("/auth/login").usernameParameter("email").passwordParameter("password")
