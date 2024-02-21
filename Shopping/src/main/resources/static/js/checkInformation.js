@@ -41,7 +41,7 @@ function checkInfo() {
             return;
         }
 
-        btn.addEventListener('click', () => checkCashInfo(allInfo));
+        checkCashInfo(allInfo);
     }
 
     function checkCashInfo(fullInformation) {
@@ -58,8 +58,7 @@ function checkInfo() {
                 "paymentMethod": fullInformation.checkCash.value
             })
         })
-            .then(response => response.json())
-            .then(response => console.log(JSON.stringify(response)));
+            .then(response => response.json());
     }
 
 }
