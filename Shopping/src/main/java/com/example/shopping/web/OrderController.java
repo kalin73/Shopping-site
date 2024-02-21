@@ -33,8 +33,8 @@ public class OrderController {
         return "orderCheckout";
     }
 
-    @PostMapping(value = "/placeOrder")
-    public ModelAndView placeOrder(@AuthenticationPrincipal ApplicationUserDetails client,
+    @PostMapping("/placeOrder")
+    public void placeOrder(@AuthenticationPrincipal ApplicationUserDetails client,
                                    @RequestBody OrderDto orderDto,
                                    ModelAndView modelAndView) {
         currentOrder = orderDto;
@@ -42,17 +42,18 @@ public class OrderController {
         if (orderDto.getPaymentMethod().equals(PaymentMethod.CARD.name())) {
             this.shoppingCartService.loadShoppingCart(modelAndView, client);
             modelAndView.setViewName("cardInformation");
-
-            return modelAndView;
         }
 
         this.orderService.placeOrder(orderDto, client);
 
         currentOrder = null;
+    }
 
-        modelAndView.setViewName("redirect:/");
+    private void payWithCash(){
 
-        return modelAndView;
+    }
+    private void payWithCard(){
+
     }
 
 }

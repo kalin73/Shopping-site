@@ -45,25 +45,25 @@ function checkInfo() {
     }
 
     function checkCashInfo(fullInformation) {
+        let payMethod = allInfo.checkCash.checked ? fullInformation.checkCash.value : fullInformation.checkCard.value
 
-        if(allInfo.checkCash.checked){
-            fetch("http://localhost:8080/order/placeOrder", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    "fullName": fullInformation.fullName.value,
-                    "phoneNumber": fullInformation.phoneNumber.value,
-                    "shippingAddress": fullInformation.shippingAddress.value,
-                    "paymentMethod": fullInformation.checkCash.value
-                })
+        fetch("http://localhost:8080/order/placeOrder", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "fullName": fullInformation.fullName.value,
+                "phoneNumber": fullInformation.phoneNumber.value,
+                "shippingAddress": fullInformation.shippingAddress.value,
+                "paymentMethod": payMethod
             })
-                .then(response => response.json());
+        })
+            .then(response => response.json());
 
-            alert("Your order has been approved!");
-            location.replace("http://localhost:8080");
-        }
+        alert("Your order has been approved!");
+        location.replace("http://localhost:8080");
+
     }
 
 }
