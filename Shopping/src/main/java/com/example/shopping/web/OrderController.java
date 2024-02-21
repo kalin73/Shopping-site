@@ -33,7 +33,7 @@ public class OrderController {
         return "orderCheckout";
     }
 
-    @PostMapping("/placeOrder")
+    @PostMapping(value = "/placeOrder")
     public ModelAndView placeOrder(@AuthenticationPrincipal ApplicationUserDetails client,
                                    @RequestBody OrderDto orderDto,
                                    ModelAndView modelAndView) {

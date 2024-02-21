@@ -34,6 +34,9 @@ public class OrderEntity {
     @Column(name = "payment_method")
     private PaymentMethod paymentMethod;
 
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
     public OrderEntity() {
 
     }
@@ -98,6 +101,15 @@ public class OrderEntity {
 
     public OrderEntity setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
+        return this;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public OrderEntity setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
         return this;
     }
 }

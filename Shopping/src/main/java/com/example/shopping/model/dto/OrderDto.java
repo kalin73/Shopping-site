@@ -2,16 +2,16 @@ package com.example.shopping.model.dto;
 
 public class OrderDto {
     private String fullName;
-    private String phone;
+    private String phoneNumber;
     private String shippingAddress;
     private String paymentMethod;
 
     public OrderDto() {
     }
 
-    public OrderDto(String fullName, String phone, String shippingAddress, String paymentMethod) {
+    public OrderDto(String fullName, String phoneNumber, String shippingAddress, String paymentMethod) {
         this.fullName = fullName;
-        this.phone = phone;
+        this.phoneNumber = phoneNumber;
         this.shippingAddress = shippingAddress;
         this.paymentMethod = paymentMethod;
     }
@@ -25,12 +25,12 @@ public class OrderDto {
         return this;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public OrderDto setPhone(String phone) {
-        this.phone = phone;
+    public OrderDto setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
         return this;
     }
 

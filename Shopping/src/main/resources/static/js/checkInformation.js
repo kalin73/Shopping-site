@@ -1,16 +1,16 @@
 window.addEventListener("load", checkInfo);
 
-function checkInfo(){
+function checkInfo() {
     const fullName = document.getElementById("fullName");
     const phoneNumber = document.getElementById("phoneNumber");
-    const address = document.getElementById("shippingAddress");
+    const shippingAddress = document.getElementById("shippingAddress");
     const checkCard = document.getElementById("card");
     const checkCash = document.getElementById("cash");
 
     const allInfo = {
         fullName: fullName,
         phoneNumber: phoneNumber,
-        address: address,
+        shippingAddress: shippingAddress,
         checkCard: checkCard,
         checkCash: checkCash
     }
@@ -18,25 +18,25 @@ function checkInfo(){
     const btn = document.getElementById("btn");
     btn.addEventListener('click', checkInput);
 
-    function checkInput(event){
+    function checkInput(event) {
         event.preventDefault();
 
-        if(!allInfo.fullName.value){
+        if (!allInfo.fullName.value) {
             alert("Please input your full name!");
             return;
         }
 
-        if(!allInfo.phoneNumber.value){
+        if (!allInfo.phoneNumber.value) {
             alert("Please input your phone number!");
             return;
         }
 
-        if(!allInfo.address.value){
+        if (!allInfo.shippingAddress.value) {
             alert("Please input shipping address!");
             return;
         }
 
-        if(!allInfo.checkCard.checked && !allInfo.checkCash.checked){
+        if (!allInfo.checkCard.checked && !allInfo.checkCash.checked) {
             alert("Please check one of method to pay!");
             return;
         }
@@ -44,22 +44,22 @@ function checkInfo(){
         btn.addEventListener('click', () => checkCashInfo(allInfo));
     }
 
-    function checkCashInfo (fullInformation){
-        if(fullInformation.checkCash.checked){
-            fetch("http://localhost:8080/order/placeOrder", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    "fullName": fullInformation.fullName.value,
-                    "phoneNumber": fullInformation.phoneNumber.value,
-                    "address": fullInformation.address.value,
-                    "paymentMethod": fullInformation.checkCash.value
-                })
+    function checkCashInfo(fullInformation) {
+
+        fetch("http://localhost:8080/order/placeOrder", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "fullName": fullInformation.fullName.value,
+                "phoneNumber": fullInformation.phoneNumber.value,
+                "shippingAddress": fullInformation.shippingAddress.value,
+                "paymentMethod": fullInformation.checkCash.value
             })
-                .then(response => response.json())
-                .then(response => console.log(JSON.stringify(response)));
-        }
+        })
+            .then(response => response.json())
+            .then(response => console.log(JSON.stringify(response)));
     }
+
 }

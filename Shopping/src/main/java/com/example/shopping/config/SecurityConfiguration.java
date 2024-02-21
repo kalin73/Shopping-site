@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.CorsConfigurer;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,7 +29,9 @@ public class SecurityConfiguration {
                         login -> login.loginPage("/auth/login").usernameParameter("email").passwordParameter("password")
                                 .defaultSuccessUrl("/", true).failureForwardUrl("/auth/login-error"))
                 .logout(out -> out.logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true))
-                .rememberMe(me -> me.key("someUniqueKey").tokenValiditySeconds(604800));
+                .rememberMe(me -> me.key("someUniqueKey").tokenValiditySeconds(604800))
+                .cors(CorsConfigurer::disable)
+                .csrf(CsrfConfigurer::disable);
 
         return httpSecurity.build();
     }
