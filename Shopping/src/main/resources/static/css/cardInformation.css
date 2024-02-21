@@ -97,6 +97,16 @@ body {
     flex: 1 1 150px;
 }
 
+.container .center form .saveCard{
+    margin-top: 20px;
+}
+
+.container .center form .saveCard label{
+    margin-top: 20px;
+    margin-left: 5px;
+    font-size: 1rem;
+}
+
 .container .center form .submit-btn {
     width: 100%;
     background: linear-gradient(45deg, blueviolet, deeppink);
