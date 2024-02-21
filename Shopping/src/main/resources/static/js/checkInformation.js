@@ -23,18 +23,43 @@ function checkInfo(){
 
         if(!allInfo.fullName.value){
             alert("Please input your full name!");
+            return;
         }
 
         if(!allInfo.phoneNumber.value){
             alert("Please input your phone number!");
+            return;
         }
 
         if(!allInfo.address.value){
             alert("Please input shipping address!");
+            return;
         }
 
         if(!allInfo.checkCard.checked && !allInfo.checkCash.checked){
             alert("Please check one of method to pay!");
+            return;
+        }
+
+        btn.addEventListener('click', () => checkCashInfo(allInfo));
+    }
+
+    function checkCashInfo (fullInformation){
+        if(fullInformation.checkCash.checked){
+            fetch("http://localhost:8080/order/placeOrder", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    "fullName": fullInformation.fullName.value,
+                    "phoneNumber": fullInformation.phoneNumber.value,
+                    "address": fullInformation.address.value,
+                    "paymentMethod": fullInformation.checkCash.value
+                })
+            })
+                .then(response => response.json())
+                .then(response => console.log(JSON.stringify(response)));
         }
     }
 }
