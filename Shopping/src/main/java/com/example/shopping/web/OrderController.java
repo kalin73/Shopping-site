@@ -1,8 +1,9 @@
 package com.example.shopping.web;
 
 import com.example.shopping.model.dto.ApplicationUserDetails;
+import com.example.shopping.model.dto.CreditCardForm;
 import com.example.shopping.model.dto.OrderDto;
-import com.example.shopping.model.enums.PaymentMethod;
+import com.example.shopping.service.CreditCardService;
 import com.example.shopping.service.OrderService;
 import com.example.shopping.service.ShoppingCartService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -11,19 +12,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-import static com.example.shopping.utils.Utils.currentOrder;
 
 @Controller
 @RequestMapping("/order")
 public class OrderController {
     private final ShoppingCartService shoppingCartService;
 
+    private final CreditCardService creditCardService;
     private final OrderService orderService;
 
-    public OrderController(ShoppingCartService shoppingCartService, OrderService orderService) {
+    public OrderController(ShoppingCartService shoppingCartService, CreditCardService creditCardService, OrderService orderService) {
         this.shoppingCartService = shoppingCartService;
+        this.creditCardService = creditCardService;
         this.orderService = orderService;
     }
 
@@ -33,27 +33,27 @@ public class OrderController {
         return "orderCheckout";
     }
 
-    @PostMapping("/placeOrder")
+    @PostMapping("/payWithCash")
     public void placeOrder(@AuthenticationPrincipal ApplicationUserDetails client,
-                                   @RequestBody OrderDto orderDto,
-                                   ModelAndView modelAndView) {
-        currentOrder = orderDto;
-
-        if (orderDto.getPaymentMethod().equals(PaymentMethod.CARD.name())) {
-            this.shoppingCartService.loadShoppingCart(modelAndView, client);
-            modelAndView.setViewName("cardInformation");
-        }
+                           @RequestBody OrderDto orderDto) {
 
         this.orderService.placeOrder(orderDto, client);
-
-        currentOrder = null;
     }
 
-    private void payWithCash(){
+    @PostMapping("/payWithCard")
+    public void payWithCard(boolean save,
+                              CreditCardForm creditCardForm,
+                              @RequestBody OrderDto orderDto,
+                              @AuthenticationPrincipal ApplicationUserDetails user) {
+        if (save) {
+            addCard(creditCardForm, user.getUsername());
+        }
 
+        this.orderService.placeOrder(orderDto, user);
     }
-    private void payWithCard(){
 
+    private void addCard(CreditCardForm creditCardForm, String username) {
+        this.creditCardService.addCreditCard(creditCardForm, username);
     }
 
 }
