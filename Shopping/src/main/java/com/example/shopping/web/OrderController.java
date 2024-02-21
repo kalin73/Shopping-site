@@ -9,6 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,7 +35,7 @@ public class OrderController {
 
     @PostMapping("/placeOrder")
     public ModelAndView placeOrder(@AuthenticationPrincipal ApplicationUserDetails client,
-                                   OrderDto orderDto,
+                                  @RequestBody OrderDto orderDto,
                                    ModelAndView modelAndView) {
         currentOrder = orderDto;
 
