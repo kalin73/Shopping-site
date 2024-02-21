@@ -45,7 +45,7 @@ public class OrderService {
         order.setCustomer(user)
                 .setDate(LocalDateTime.now())
                 .setOrderCost(total)
-                .setPhoneNumber(order.getPhoneNumber())
+                .setPhoneNumber(orderDto.getPhoneNumber())
                 .setShippingAddress(orderDto.getShippingAddress())
                 .setPaymentMethod(PaymentMethod.valueOf(orderDto.getPaymentMethod()));
 
