@@ -35,7 +35,7 @@ public class OrderController {
 
     @PostMapping("/placeOrder")
     public ModelAndView placeOrder(@AuthenticationPrincipal ApplicationUserDetails client,
-                                  @RequestBody OrderDto orderDto,
+                                   @RequestBody OrderDto orderDto,
                                    ModelAndView modelAndView) {
         currentOrder = orderDto;
 
