@@ -59,6 +59,9 @@ function checkInfo() {
             })
         })
             .then(response => response.json());
+
+        alert("Your order has been approved!");
+        location.replace("http://localhost:8080");
     }
 
 }
