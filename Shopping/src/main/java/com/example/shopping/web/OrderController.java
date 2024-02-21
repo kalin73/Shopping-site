@@ -6,12 +6,16 @@ import com.example.shopping.model.dto.OrderDto;
 import com.example.shopping.service.CreditCardService;
 import com.example.shopping.service.OrderService;
 import com.example.shopping.service.ShoppingCartService;
+
+import static com.example.shopping.utils.Utils.*;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/order")
@@ -42,14 +46,26 @@ public class OrderController {
 
     @PostMapping("/payWithCard")
     public void payWithCard(boolean save,
-                              CreditCardForm creditCardForm,
-                              @RequestBody OrderDto orderDto,
-                              @AuthenticationPrincipal ApplicationUserDetails user) {
+                            CreditCardForm creditCardForm,
+                            @RequestBody OrderDto orderDto,
+                            @AuthenticationPrincipal ApplicationUserDetails user) {
         if (save) {
             addCard(creditCardForm, user.getUsername());
         }
 
         this.orderService.placeOrder(orderDto, user);
+    }
+
+    @GetMapping("/payWithCard")
+    public ModelAndView payWithCard(@RequestBody OrderDto orderDto,
+                                    @AuthenticationPrincipal ApplicationUserDetails user,
+                                    ModelAndView modelAndView) {
+        currentOrder = orderDto;
+
+        this.shoppingCartService.loadShoppingCart(modelAndView, user);
+        modelAndView.setViewName("cardInformation");
+
+        return modelAndView;
     }
 
     private void addCard(CreditCardForm creditCardForm, String username) {
