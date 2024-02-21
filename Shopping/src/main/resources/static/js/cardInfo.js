@@ -50,4 +50,8 @@ function doFunA() {
     iconA.style.color = "#aaa";
     iconC.style.color = "green";
     cDetails.style.display = "none";
-}``
+}
+
+function submit() {
+    alert("Your order has been approved!");
+}
