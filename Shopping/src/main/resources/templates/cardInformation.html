@@ -110,26 +110,26 @@
             <input type="submit" value="submit" class="submit-btn"/>
         </form>
     </div>
-<!--    <div class="right">-->
-<!--        <p>Order information</p>-->
-<!--        <hr style="border: 1px solid #ccc; margin: 0 15px;"/>-->
-<!--        <div class="details">-->
-<!--            <div class="shopping-cart">-->
-<!--                <div class="box" th:each="item : ${cartItems}" th:object="${item}">-->
+    <div class="right">
+        <p>Order information</p>
+        <hr style="border: 1px solid #ccc; margin: 0 15px;"/>
+        <div class="details">
+            <div class="shopping-cart">
+                <div class="box" th:each="item : ${cartItems}" th:object="${item}">
 
-<!--                    <img th:src="*{image}"/>-->
-<!--                    <div class="content">-->
-<!--                        <h3 th:text="*{productName}"></h3>-->
-<!--                        <span class="price" th:text="*{amount}"></span><br/>-->
-<!--                        <span class="quantity" th:text="*{quantity}"></span>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="total">-->
-<!--                    <h3 th:text="'Total: ' + ${total}"></h3>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+                    <img th:src="*{image}"/>
+                    <div class="content">
+                        <h3 th:text="*{productName}"></h3>
+                        <span class="price" th:text="*{amount}"></span><br/>
+                        <span class="quantity" th:text="*{quantity}"></span>
+                    </div>
+                </div>
+                <div class="total">
+                    <h3 th:text="'Total: ' + ${total}"></h3>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script type="text/javascript" src="/js/cardInfo.js"></script>
 
