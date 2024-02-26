@@ -29,7 +29,6 @@ document.querySelector('.cvv-input').oninput = () => {
 }
 
 
-
 let tColorA = document.getElementById('tColorA'),
     tColorC = document.getElementById('tColorC'),
     iconA = document.querySelector('.fa-credit-card-alt'),
@@ -52,6 +51,36 @@ function doFunA() {
     cDetails.style.display = "none";
 }
 
-function submit() {
+const cardNumber = document.getElementById("cardNumber");
+const owner = document.getElementById("ownerName");
+const month = document.getElementById("month");
+const year = document.getElementById("year");
+const ccvCode = document.getElementById("ccv");
+
+const btn = document.getElementById("submit-btn");
+btn.addEventListener('click', submit);
+
+function submit(event) {
+    event.preventDefault();
+
+    if (cardNumber.value === "") {
+        alert("Please input your full name!");
+        return;
+    }
+
+    if (owner.value === "") {
+        alert("Please input your phone number!");
+        return;
+    }
+
+    if (month.value === "") {
+        alert("Please input shipping address!");
+        return;
+    }
+
+    if (year.value === "") {
+        alert("Please check one of method to pay!");
+        return;
+    }
     alert("Your order has been approved!");
 }
