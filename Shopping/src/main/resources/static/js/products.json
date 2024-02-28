@@ -722,6 +722,28 @@
     }
   },
   {
+    "productName": "APPLE WATCH S9 MIDNIGHT",
+    "price": 799.0,
+    "description": "Good Smartwatch",
+    "quantity": 7,
+    "image": "/images/smartwatches/applewatch9.jpg",
+    "category": {
+      "id": 3,
+      "name": "SMARTWATCHES"
+    }
+  },
+  {
+    "productName": "SAMSUNG GALAXY WATCH6 SILVER",
+    "price": 549.0,
+    "description": "Good Smartwatch",
+    "quantity": 7,
+    "image": "/images/smartwatches/samsungwatch6Silver.jpg",
+    "category": {
+      "id": 3,
+      "name": "SMARTWATCHES"
+    }
+  },
+  {
     "productName": "Playstation 5",
     "price": 999.0,
     "description": "Конзола PLAYSTATION 5 PS5",
