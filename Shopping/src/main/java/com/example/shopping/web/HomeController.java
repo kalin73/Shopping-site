@@ -20,7 +20,7 @@ public class HomeController {
     public ModelAndView getHome(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
         this.shoppingCartService.loadShoppingCart(modelAndView, user);
 
-        modelAndView.setViewName("Shopping");
+        modelAndView.setViewName("index");
 
         return modelAndView;
     }
