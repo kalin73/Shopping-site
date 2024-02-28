@@ -619,61 +619,6 @@
     ]
   },
   {
-    "productName": "GSM PANASONIC KX-TU110",
-    "price": 39.0,
-    "description": "Good Smart Phone",
-    "quantity": 18,
-    "image": "/images/phone Page/phone1.jpg",
-    "category": {
-      "id": 2,
-      "name": "SMARTPHONES"
-    }
-  },
-  {
-    "productName": "GSM MYPHONE HALO",
-    "price": 42.0,
-    "description": "Good Smart Phone",
-    "quantity": 15,
-    "image": "/images/phone Page/phone2.jpg",
-    "category": {
-      "id": 2,
-      "name": "SMARTPHONES"
-    }
-  },
-  {
-    "productName": "GSM MYPHONE HALO 3",
-    "price": 51.0,
-    "description": "Good Smart Phone",
-    "quantity": 11,
-    "image": "/images/phone Page/phone3.jpg",
-    "category": {
-      "id": 2,
-      "name": "SMARTPHONES"
-    }
-  },
-  {
-    "productName": "GSM MYPHONE HAMMER PATRIOT",
-    "price": 79.99,
-    "description": "Good Smart Phone",
-    "quantity": 17,
-    "image": "/images/phone Page/phone5.jpg",
-    "category": {
-      "id": 2,
-      "name": "SMARTPHONES"
-    }
-  },
-  {
-    "productName": "NOKIA C21 PLUS",
-    "price": 109.0,
-    "description": "Good Smart Phone",
-    "quantity": 17,
-    "image": "/images/phone Page/phone6.jpg",
-    "category": {
-      "id": 2,
-      "name": "SMARTPHONES"
-    }
-  },
-  {
     "productName": "XIAOMI REDMI A2",
     "price": 129.0,
     "description": "Good Smart Phone",
