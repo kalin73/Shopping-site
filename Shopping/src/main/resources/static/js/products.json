@@ -621,7 +621,7 @@
   {
     "productName": "XIAOMI REDMI A2",
     "price": 129.0,
-    "description": "Good Smart Phone",
+    "description": "Good Smartphone",
     "quantity": 19,
     "image": "/images/phone Page/phone7.jpg",
     "category": {
@@ -632,7 +632,7 @@
   {
     "productName": "MOTOROLA E13",
     "price": 135.0,
-    "description": "Good Smart Phone",
+    "description": "Good Smartphone",
     "quantity": 20,
     "image": "/images/phone Page/phone8.jpg",
     "category": {
@@ -643,7 +643,7 @@
   {
     "productName": "POCO C40",
     "price": 189.0,
-    "description": "Good Smart Phone",
+    "description": "Good Smartphone",
     "quantity": 20,
     "image": "/images/phone Page/phone9.jpg",
     "category": {
@@ -654,7 +654,7 @@
   {
     "productName": "HUAWEI NOVA 11i",
     "price": 369.0,
-    "description": "Good Smart Phone",
+    "description": "Good Smartphone",
     "quantity": 15,
     "image": "/images/phone Page/phone10.jpg",
     "category": {
@@ -665,7 +665,7 @@
   {
     "productName": "APPLE IPHONE 12",
     "price": 1109.0,
-    "description": "Good Smart Phone",
+    "description": "Good Smartphone",
     "quantity": 11,
     "image": "/images/phone Page/phone11.jpg",
     "category": {
@@ -674,9 +674,46 @@
     }
   },
   {
+    "productName": "APPLE IPHONE 15 PRO",
+    "price": 2999.9,
+    "description": "Good Smartphone",
+    "quantity": 11,
+    "image": "/images/phone Page/iphone15Pro.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    },
+    "specs": [
+      {
+        "name": "CPU",
+        "value": "Apple A17 Pro"
+      },
+      {
+        "name": "Memory",
+        "value": "1TB"
+      },
+      {
+        "name": "Ram",
+        "value": "8GB"
+      },
+      {
+        "name": "Screen size",
+        "value": "6.10 \""
+      },
+      {
+        "name": "Display technology",
+        "value": "Super Retina XDR, OLED, 120 Hz"
+      },
+      {
+        "name": "warranty",
+        "value": "2 years"
+      }
+    ]
+  },
+  {
     "productName": "SAMSUNG GALAXY S23 ULTRA",
     "price": 2099.0,
-    "description": "Good Smart Phone",
+    "description": "Good Smartphone",
     "quantity": 7,
     "image": "/images/phone Page/phone12.jpg",
     "category": {
