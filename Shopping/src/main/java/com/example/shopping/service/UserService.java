@@ -34,7 +34,7 @@ public class UserService {
 
         UserEntity user = new UserEntity(userRegisterForm.getFirstName(), userRegisterForm.getLastName(),
                 email, passwordEncoder.encode(userRegisterForm.getPassword()),
-                userRegisterForm.getPhoneNumber()).setEnabled(false);
+                userRegisterForm.getPhoneNumber()).setEnabled(true);
 
         user = this.userRepository.save(user);
 
