@@ -15,7 +15,7 @@ To run this project, you will need to add the following environment variables to
 
 `DB_USERNAME` - Username for the PostgreSQL database
 
-`DB_PASS` - Password for the PostgreSQL database
+`DB_PASSWORD` - Password for the PostgreSQL database
 
 `EMAIL` - Email from which the application sends verification emails
 
