@@ -21,6 +21,15 @@ To run this project, you will need to add the following environment variables to
 
 `PASSWORD` - Password for that email
 
+## Run Locally
+To run the application first you have to create google account which will be used for sending emails from the application.
+Then open your google account and go to **security / signing in to Google section / password & sign-in method section / click app passwords / generate.**
+
+The easiest way to run the application is to run it on IntelliJ IDE
+- download and install IntelliJ IDEA Community Edition:
+  https://www.jetbrains.com/idea/download/?section=windows
+
+-
 
 ## Screenshots
 Home page
