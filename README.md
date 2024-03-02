@@ -57,6 +57,7 @@ To run the application first you have to create google account which will be use
     `PASSWORD` - generated password for applications for that gmail **(not the account password)**
 
 - click run
+
 If every environment variable is added the application will run without errors.
 
 
