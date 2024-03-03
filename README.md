@@ -20,46 +20,30 @@ E-commerce website for IT products. Users can make an account, login after they 
 ## Run Locally
 To run the application first you have to create google account which will be used for sending emails from the application. Then open your google account and go to: **security / signing in to Google section / click 2-Step Verification / scroll down and click on app passwords / generate.**
 
-- install **Git** on your system: https://git-scm.com/download/win
+- install **Docker** on your system: https://www.docker.com/get-started/
 
-- install **PostgreSQL** server on your system: https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+- download the repository as zip and extract it
+![App Screenshot](https://github.com/kalin73/Shopping-site/blob/main/Screenshots/gitCloneUrl.png?raw=true)
 
-- download and install **IntelliJ IDEA Community Edition**:
-  https://www.jetbrains.com/idea/download/?section=windows
+- go to **Shopping-site-main/Shopping** and open **docker-compose.yml**
 
-- open IntelliJ and click on **Get from VCS**
-
-- copy and paste the repository url 
-```bash
-  https://github.com/kalin73/Shopping-site.git
-```
-
-- when you open the project IntelliJ may ask you to setup JDK, click setup, choose **JDK 17** and wait
-
-- open the main class: **Shopping/src/main/java/com/example/shopping/ShoppingApplication**
-
-- then click the three dots right from debug symbol on the top bar and choose **Run with Parameters**
-
-- add the following environment variables in the format **"NAME=VALUE;NAME2=VALUE2"**:
-
-    `DB_HOST` - host of your PostgreSQL database
-
-    `DB_PORT` - port of the database (for PostgreSQL usually is **5432**)
-
-    `DB_NAME` - database name
-
-    `DB_USERNAME` - username for the database
-
-    `DB_PASSWORD` - password for the database
+- add values for the following environment variables:
 
     `EMAIL` - the gmail you created at the start
 
     `PASSWORD` - generated password for applications for that gmail **(not the account password)**
 
-- click run
+- close the **docker-compose.yml** file and open terminal from **Shooping** folder
+- enter following command:
+```bash
+  docker-compose -f docker-compose.yml up
+```
+If every environment variable is added the application will run on **http://localhost:8080**
 
-If every environment variable is added the application will run without errors.
-
+- to stop the application press **Ctrl + C** in the terminal or use command:
+```bash
+  docker stop shopping-app shopping-db
+```
 
 ## Screenshots
 Home page
