@@ -34,7 +34,7 @@ To run the application first you have to create google account which will be use
 
     `PASSWORD` - generated password for applications for that gmail **(not the account password)**
 
-- close the **docker-compose.yml** file and open terminal from **Shooping** folder
+- close the **docker-compose.yml** file and open terminal from **Shopping** folder
 - enter following command:
 ```bash
   docker-compose -f docker-compose.yml up
