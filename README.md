@@ -23,6 +23,7 @@ To run the application first you have to create google account which will be use
 - install **Docker** on your system: https://www.docker.com/get-started/
 
 - download the repository as zip and extract it
+  
 ![App Screenshot](https://github.com/kalin73/Shopping-site/blob/main/Screenshots/gitCloneUrl.png?raw=true)
 
 - go to **Shopping-site-main/Shopping** and open **docker-compose.yml**
