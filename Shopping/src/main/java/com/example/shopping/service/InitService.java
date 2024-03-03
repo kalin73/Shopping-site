@@ -6,11 +6,12 @@ import com.example.shopping.model.entity.SpecificationsEntity;
 import com.example.shopping.model.enums.Category;
 import com.example.shopping.repository.*;
 import com.google.gson.Gson;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,16 +44,17 @@ public class InitService {
             }
         }
 
-        try (FileReader reader = new FileReader(
-                Path.of("Shopping", PRODUCTS_JSON_PATH).toFile())) {
-            List<ProductEntity> products = Arrays.stream(gson.fromJson(reader, ProductEntity[].class)).toList();
+        try (InputStream inputStream = new ClassPathResource("products.json").getInputStream()) {
+            List<ProductEntity> products = Arrays.stream(gson.fromJson(new String(inputStream.readAllBytes(), StandardCharsets.UTF_8),
+                    ProductEntity[].class)).toList();
+
             List<SpecificationsEntity> specs = new ArrayList<>();
 
             for (ProductEntity product : products) {
                 specs.addAll(product.getSpecs());
             }
 
-            reader.close();
+            inputStream.close();
 
             if (productRepository.count() != products.size() || specificationsRepository.count() != specs.size()) {
                 this.orderItemRepository.deleteAll();
