@@ -16,6 +16,7 @@ services:
     depends_on:
       - dbpostgresql
   dbpostgresql:
+    container_name: shopping-db
     image: postgres
     ports:
       - "5432:5432"
