@@ -19,7 +19,6 @@ public class UserController {
     @GetMapping("/profile")
     public ModelAndView getProfilePage(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
         UserProfileDto userDto = this.userService.getUserProfile(user.getUsername());
-
         modelAndView.addObject("email", userDto.getEmail())
                 .addObject("fullName", user.getFullName())
                 .addObject("phoneNumber", user.getPhoneNumber())
@@ -29,4 +28,5 @@ public class UserController {
 
         return modelAndView;
     }
+
 }
