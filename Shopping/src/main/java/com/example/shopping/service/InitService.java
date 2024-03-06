@@ -18,7 +18,6 @@ import java.util.List;
 
 @Service
 public class InitService {
-    private static final String[] PRODUCTS_JSON_PATH = {"src", "main", "resources", "static", "js", "products.json"};
     private final ProductRepository productRepository;
     private final SpecificationsRepository specificationsRepository;
     private final Gson gson;
