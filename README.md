@@ -18,7 +18,7 @@ E-commerce website for IT products. Users can make an account, login after they 
 
 
 ## Run Locally
-To run the application first you have to create google account which will be used for sending emails from the application. Then open your google account and go to: **security / signing in to Google section / click 2-Step Verification / scroll down and click on app passwords / generate.**
+To run the application first you have to create google account which will be used for sending emails from the application. Then open your google account and go to: **security / how you sign in to Google section / click 2-Step Verification / scroll down and click on app passwords / generate.**
 
 - install **Docker** on your system: https://www.docker.com/get-started/
 
