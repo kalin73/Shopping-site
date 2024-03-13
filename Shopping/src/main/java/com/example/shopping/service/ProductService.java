@@ -48,7 +48,7 @@ public class ProductService {
     }
 
     @Transactional
-    public DetailedProductViewDto getProductById(Long id) {
+    public DetailedProductViewDto getProductById(long id) {
         DetailedProductViewDto product = this.productRepository.findById(id)
                 .map(DetailedProductViewDto::mapToDetailedView).get();
 
