@@ -18,7 +18,7 @@ public class CategoryService {
 		return this.categoryRepository.findByName(Category.valueOf(category.toUpperCase())).get();
 	}
 
-	public CategoryEntity getCategoryById(Long id) {
+	public CategoryEntity getCategoryById(long id) {
 		return this.categoryRepository.findById(id).orElse(null);
 	}
 }
