@@ -30,7 +30,6 @@ public class ShoppingCartController {
 		}
 
 		modelAndView.setViewName("redirect:/products/" + categoryId);
-		this.shoppingItemService.refreshItems();
 		
 		return modelAndView;
 
@@ -53,8 +52,6 @@ public class ShoppingCartController {
 		this.shoppingItemService.removeItemById(id);
 
 		modelAndView.setViewName("redirect:/");
-		
-		this.shoppingItemService.refreshItems();
 
 		return modelAndView;
 
