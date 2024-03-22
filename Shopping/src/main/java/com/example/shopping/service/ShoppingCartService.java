@@ -37,14 +37,14 @@ public class ShoppingCartService {
         this.shoppingItemService = shoppingItemService;
     }
 
-    public Long addToCart(Long id, String email) {
+    public Long addToCart(Long productId, String email) {
         UserEntity user = userRepository.findByEmail(email).get();
 
         ShoppingCartEntity cart = shoppingCartRepository.findByUser(user).orElse(new ShoppingCartEntity(user));
 
         cart = shoppingCartRepository.save(cart);
 
-        ProductEntity product = productRepository.findById(id).get();
+        ProductEntity product = productRepository.findById(productId).get();
 
         ShoppingItemEntity shoppingItem = this.shoppingItemRepository.findAllByProduct(product).orElse(null);
 
@@ -58,9 +58,22 @@ public class ShoppingCartService {
 
         }
         shoppingItemRepository.save(shoppingItem);
-
+        this.shoppingItemService.refreshItems();
 
         return product.getCategory().getId();
+    }
+
+    public void removeItemFromCart(Long id) {
+        ShoppingItemEntity item = this.shoppingItemRepository.findById(id).get();
+
+        if (item.getQuantity() > 1) {
+            item.setQuantity(item.getQuantity() - 1);
+            this.shoppingItemRepository.save(item);
+
+        } else {
+            this.shoppingItemRepository.deleteById(id);
+        }
+        this.shoppingItemService.refreshItems();
     }
 
     @Transactional

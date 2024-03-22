@@ -1,23 +1,19 @@
 package com.example.shopping.web;
 
+import com.example.shopping.model.dto.ApplicationUserDetails;
+import com.example.shopping.service.ShoppingCartService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.shopping.model.dto.ApplicationUserDetails;
-import com.example.shopping.service.ShoppingCartService;
-import com.example.shopping.service.ShoppingItemService;
-
 @Controller
 public class ShoppingCartController {
 	private final ShoppingCartService shoppingCartService;
-	private final ShoppingItemService shoppingItemService;
 
-	public ShoppingCartController(ShoppingCartService shoppingCartService, ShoppingItemService shoppingItemService) {
+	public ShoppingCartController(ShoppingCartService shoppingCartService) {
 		this.shoppingCartService = shoppingCartService;
-		this.shoppingItemService = shoppingItemService;
 	}
 
 	@GetMapping("/add/{id}")
@@ -49,7 +45,7 @@ public class ShoppingCartController {
 
 	@GetMapping("/delete/{id}")
 	public ModelAndView deleteItemById(@PathVariable("id") Long id, ModelAndView modelAndView) {
-		this.shoppingItemService.removeItemById(id);
+		this.shoppingCartService.removeItemFromCart(id);
 
 		modelAndView.setViewName("redirect:/");
 
