@@ -32,7 +32,7 @@ spring:
         mime:
           charset: UTF
         smtp:
-          write timeout: 10000
+          write-timeout: 10000
           connection-timeout: 10000
           timeout: 10000
           auth: true
