@@ -20,7 +20,7 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String fromEmail;
 
-    @Value("${spring.mail.verify.host}")
+    @Value("${spring.mail.properties.verify.host}")
     private String host;
 
     private final static String PASSWORD_CHANGE_URL = "/auth/changePassword?token=";
