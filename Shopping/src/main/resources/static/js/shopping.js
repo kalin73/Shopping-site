@@ -14,12 +14,16 @@ document.querySelector('#cart').onclick = () => {
     menu.classList.remove('active')
 }
 
+let userBnt = document.getElementById("user");
+
 let logIn = document.querySelector('.login');
-document.querySelector('#user').onclick = () => {
-    logIn.classList.toggle('active');
-    searchForm.classList.remove('active');
-    shoppingCart.classList.remove('active');
-    menu.classList.remove('active')
+if (userBnt !== null) {
+    userBnt.onclick = () => {
+        logIn.classList.toggle('active');
+        searchForm.classList.remove('active');
+        shoppingCart.classList.remove('active');
+        menu.classList.remove('active')
+    }
 }
 
 let menu = document.querySelector('.navbar');
