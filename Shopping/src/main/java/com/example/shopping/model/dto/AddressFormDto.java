@@ -1,14 +1,22 @@
 package com.example.shopping.model.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class AddressFormDto {
+    @NotBlank
     private String fullName;
 
+    @Size(min = 10, max = 10)
     private String phoneNumber;
 
+    @NotBlank
     private String country;
 
+    @NotBlank
     private String city;
 
+    @NotBlank
     private String address;
 
     public AddressFormDto() {

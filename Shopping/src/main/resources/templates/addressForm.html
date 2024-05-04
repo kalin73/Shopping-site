@@ -15,29 +15,30 @@
 
 <body>
 <div class="container">
-    <form th:method="POST" th:action="@{/billingAddress}">
+    <form th:method="POST" th:action="@{/billingAddress}" th:object="${addressForm}">
         <div class="row">
             <div class="col">
                 <h3 class="title">Billing Address</h3>
                 <div class="inputBox">
                     <span>Full Name: </span>
-                    <input type="text" name="fullName"/>
+                    <input type="text" name="fullName" th:field="*{fullName}"/>
+                    <p th:if="${#fields.hasErrors('fullName')}">Full name should not be empty!</p>
                 </div>
                 <div class="inputBox">
                     <span>Phone number: </span>
-                    <input type="text" name="phoneNumber"/>
+                    <input type="text" name="phoneNumber" th:field="*{phoneNumber}"/>
                 </div>
                 <div class="inputBox">
                     <span>Country: </span>
-                    <input type="text" name="country"/>
+                    <input type="text" name="country" th:field="*{country}"/>
                 </div>
                 <div class="inputBox">
                     <span>City: </span>
-                    <input type="text" name="city"/>
+                    <input type="text" name="city" th:field="*{city}"/>
                 </div>
                 <div class="inputBox">
                     <span>Address: </span>
-                    <input type="text" name="address"/>
+                    <input type="text" name="address" th:field="*{address}"/>
                 </div>
 
             </div>
