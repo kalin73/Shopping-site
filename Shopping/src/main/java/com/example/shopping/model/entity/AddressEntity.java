@@ -20,6 +20,7 @@ public class AddressEntity {
 
     @Column(name = "phone_number")
     private String phoneNumber;
+
     @Column(nullable = false)
     private String country;
 
