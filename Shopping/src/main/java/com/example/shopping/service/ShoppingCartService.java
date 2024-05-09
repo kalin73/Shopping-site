@@ -53,7 +53,7 @@ public class ShoppingCartService {
             shoppingItem = new ShoppingItemEntity();
             shoppingItem.setProduct(product).setCart(cart).setQuantity(1);
 
-        } else if (shoppingItem.getCart().getId().equals(cart.getId()) && shoppingItem.getQuantity() < product.getQuantity()) {
+        } else if (shoppingItem.getCart().getId() == cart.getId() && shoppingItem.getQuantity() < product.getQuantity()) {
             shoppingItem.setQuantity(shoppingItem.getQuantity() + 1);
 
         }
