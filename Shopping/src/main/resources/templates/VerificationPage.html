@@ -2,23 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="/css/verificationPage.css"/>
+<meta charset="UTF-8">
+<title>Title</title>
+<link rel="stylesheet" type="text/css" href="/css/verificationPage.css" />
 </head>
 
 <body>
 
-<div class="text">
-    <h4>Verification link has expired!</h4>
-    <h5>Send another verification email</h5>
-</div>
-<div class="bodyContainer">
-    <form th:method="POST" th:action="@{/auth/sendVerification}">
-        <input class="inputContainer" type="text" name="email" id="email" placeholder="Email"/>
-        <input type="submit" value="Send" class="btn"/>
-    </form>
-</div>
+	<div class="text">
+		<h4>Verification link has expired!</h4>
+		<h5>Send another verification email</h5>
+	</div>
+	<div class="bodyContainer">
+		<form th:method="POST" th:action="@{/auth/sendVerification}">
+			<input class="inputContainer" type="text" name="email" id="email"
+				placeholder="Email" /> <input type="submit" value="Send" class="btn" />
+		</form>
+	</div>
 
 </body>
 
