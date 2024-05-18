@@ -41,8 +41,9 @@
 					<span class="quantity" th:text="*{quantity}"></span>
 				</div>
 			</div>
-			<div class="total">
-				<h3 th:text="'Total: ' + ${total}"></h3>
+			<div th:switch="${total}" class="total">
+				<h3 th:case="null" th:text="'Total: 0'"></h3>
+				<h3 th:case="*" th:text="'Total: ' + ${total}"></h3>
 			</div>
 			<a href="/order/checkout" class="btn">Checkout</a>
 		</div>
