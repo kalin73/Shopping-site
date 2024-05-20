@@ -6,4 +6,6 @@ public class Utils {
     public static Boolean IS_VALID = true;
 
     public static OrderDto currentOrder;
+
+    public static String lastUrl = "";
 }
