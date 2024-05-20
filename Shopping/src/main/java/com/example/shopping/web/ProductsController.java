@@ -4,12 +4,15 @@ import com.example.shopping.model.dto.ApplicationUserDetails;
 import com.example.shopping.model.dto.ProductViewDto;
 import com.example.shopping.service.ProductService;
 import com.example.shopping.service.ShoppingCartService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import static com.example.shopping.utils.Utils.*;
 
 import java.util.List;
 
@@ -18,10 +21,12 @@ import java.util.List;
 public class ProductsController {
     private final ProductService productService;
     private final ShoppingCartService shoppingCartService;
+    private final HttpServletRequest request;
 
-    public ProductsController(ProductService productService, ShoppingCartService shoppingCartService) {
+    public ProductsController(ProductService productService, ShoppingCartService shoppingCartService, HttpServletRequest request) {
         this.productService = productService;
         this.shoppingCartService = shoppingCartService;
+        this.request = request;
     }
 
     @GetMapping("/search")
@@ -41,6 +46,8 @@ public class ProductsController {
                                     @PathVariable(name = "id") Long id) {
         this.shoppingCartService.loadShoppingCart(modelAndView, user);
 
+        lastUrl = request.getRequestURI();
+
         this.addingToView(modelAndView, id);
 
         return modelAndView;
@@ -50,6 +57,8 @@ public class ProductsController {
     public ModelAndView getProduct(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user,
                                    @PathVariable(name = "id") Long id) {
         this.shoppingCartService.loadShoppingCart(modelAndView, user);
+
+        lastUrl = request.getRequestURI();
 
         modelAndView.setViewName("productInfo");
         modelAndView.addObject("id", id);
