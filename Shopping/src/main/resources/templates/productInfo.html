@@ -2,22 +2,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Shopping</title>
-	<link rel="icon" type="image/icon" href="/images/logo.png" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-	<link rel="stylesheet" type="text/css" href="/css/information.css" />
-	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Shopping</title>
+    <link rel="icon" type="image/icon" href="/images/logo.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/information.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/shopping.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 
 </head>
 
 <body>
-	<input type="hidden" name="productId" id="productId" th:value="*{id}">
-	<table id="information"></table>
-	<section id="videoId"></section>
-	<script src="/js/prodInfo.js" type="text/javascript"></script>
+<section>
+    <header th:replace="~{fragments/header}"></header>
+</section>
+<div>
+    <input type="hidden" name="productId" id="productId" th:value="*{id}">
+    <table id="information"></table>
+    <section id="videoId"></section>
+    <script src="/js/prodInfo.js" type="text/javascript"></script>
+</div>
 </body>
 
 </html>
