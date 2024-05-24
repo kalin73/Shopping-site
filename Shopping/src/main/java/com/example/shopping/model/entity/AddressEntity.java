@@ -1,12 +1,6 @@
 package com.example.shopping.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "addresses")
@@ -31,6 +25,7 @@ public class AddressEntity {
     private String address;
 
     @ManyToOne(targetEntity = UserEntity.class)
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
     public AddressEntity() {
