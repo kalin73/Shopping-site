@@ -1,21 +1,17 @@
 package com.example.shopping.model.entity;
 
+import com.example.shopping.model.enums.PaymentMethod;
+import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.example.shopping.model.enums.PaymentMethod;
-import jakarta.persistence.*;
-
 @Entity
 @Table(name = "orders")
-public class OrderEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class OrderEntity extends BaseEntity {
     @ManyToOne
+    @JoinColumn(name = "customer_id")
     private UserEntity customer;
 
     @OneToMany(mappedBy = "shoppingOrder")
@@ -39,15 +35,6 @@ public class OrderEntity {
 
     public OrderEntity() {
 
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public OrderEntity setId(Long id) {
-        this.id = id;
-        return this;
     }
 
     public UserEntity getCustomer() {

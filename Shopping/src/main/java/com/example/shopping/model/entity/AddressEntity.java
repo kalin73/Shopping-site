@@ -4,11 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "addresses")
-public class AddressEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class AddressEntity extends BaseEntity {
     @Column(name = "full_name")
     private String fullName;
 
@@ -39,15 +35,6 @@ public class AddressEntity {
         this.city = city;
         this.address = address;
         this.user = user;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public AddressEntity setId(Long id) {
-        this.id = id;
-        return this;
     }
 
     public String getFullName() {

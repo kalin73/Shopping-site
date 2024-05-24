@@ -6,12 +6,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "credit_cards")
-public class CreditCardEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class CreditCardEntity extends BaseEntity {
     @Column(name = "owner_name")
     private String ownerName;
 
@@ -25,6 +20,7 @@ public class CreditCardEntity {
     private LocalDate expDate;
 
     @ManyToOne(targetEntity = UserEntity.class)
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
     public CreditCardEntity() {
@@ -37,15 +33,6 @@ public class CreditCardEntity {
         this.cvcCode = cvcCode;
         this.expDate = expDate;
         this.user = user;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public CreditCardEntity setId(Long id) {
-        this.id = id;
-        return this;
     }
 
     public String getOwnerName() {

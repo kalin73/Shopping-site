@@ -1,58 +1,44 @@
 package com.example.shopping.model.entity;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.*;
-
 @Entity
 @Table(name = "shopping_cart")
-public class ShoppingCartEntity {
+public class ShoppingCartEntity extends BaseEntity {
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @OneToMany(mappedBy = "cart", targetEntity = ShoppingItemEntity.class, cascade = CascadeType.ALL)
+    private List<ShoppingItemEntity> items;
 
-	@OneToOne
-	@JoinColumn(name = "user_id")
-	private UserEntity user;
+    public ShoppingCartEntity(UserEntity user) {
+        this.user = user;
+    }
 
-	@OneToMany(mappedBy = "cart", targetEntity = ShoppingItemEntity.class, cascade = CascadeType.ALL)
-	private List<ShoppingItemEntity> items;
+    public ShoppingCartEntity() {
+        this.items = new ArrayList<>();
+    }
 
-	public ShoppingCartEntity(UserEntity user) {
-		this.user = user;
-	}
+    public UserEntity getUser() {
+        return user;
+    }
 
-	public ShoppingCartEntity() {
-		this.items = new ArrayList<>();
-	}
+    public ShoppingCartEntity setUser(UserEntity user) {
+        this.user = user;
+        return this;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public List<ShoppingItemEntity> getItems() {
+        return items;
+    }
 
-	public ShoppingCartEntity setId(Long id) {
-		this.id = id;
-		return this;
-	}
-
-	public UserEntity getUser() {
-		return user;
-	}
-
-	public ShoppingCartEntity setUser(UserEntity user) {
-		this.user = user;
-		return this;
-	}
-
-	public List<ShoppingItemEntity> getItems() {
-		return items;
-	}
-
-	public ShoppingCartEntity setItems(List<ShoppingItemEntity> items) {
-		this.items = items;
-		return this;
-	}
+    public ShoppingCartEntity setItems(List<ShoppingItemEntity> items) {
+        this.items = items;
+        return this;
+    }
 
 }

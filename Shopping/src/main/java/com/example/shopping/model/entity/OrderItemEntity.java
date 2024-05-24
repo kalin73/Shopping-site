@@ -1,61 +1,45 @@
 package com.example.shopping.model.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "oreder_items")
-public class OrderItemEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+public class OrderItemEntity extends BaseEntity {
+    @ManyToOne
+    private ProductEntity product;
 
-	@ManyToOne
-	private ProductEntity product;
+    @JoinColumn(name = "shopping_order")
+    @ManyToOne
+    private OrderEntity shoppingOrder;
 
-	@JoinColumn(name = "shopping_order")
-	@ManyToOne
-	private OrderEntity shoppingOrder;
+    public OrderItemEntity() {
 
-	public OrderItemEntity() {
+    }
 
-	}
+    public OrderItemEntity(ProductEntity product, OrderEntity shoppingOrder) {
+        this.product = product;
+        this.shoppingOrder = shoppingOrder;
+    }
 
-	public OrderItemEntity(ProductEntity product, OrderEntity shoppingOrder) {
-		this.product = product;
-		this.shoppingOrder = shoppingOrder;
-	}
+    public ProductEntity getProduct() {
+        return product;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public OrderItemEntity setProduct(ProductEntity product) {
+        this.product = product;
+        return this;
+    }
 
-	public OrderItemEntity setId(Long id) {
-		this.id = id;
-		return this;
-	}
+    public OrderEntity getShoppingOrder() {
+        return shoppingOrder;
+    }
 
-	public ProductEntity getProduct() {
-		return product;
-	}
-
-	public OrderItemEntity setProduct(ProductEntity product) {
-		this.product = product;
-		return this;
-	}
-
-	public OrderEntity gethoppingOrder() {
-		return shoppingOrder;
-	}
-
-	public OrderItemEntity setShoppingOrder(OrderEntity shoppingOrder) {
-		this.shoppingOrder = shoppingOrder;
-		return this;
-	}
+    public OrderItemEntity setShoppingOrder(OrderEntity shoppingOrder) {
+        this.shoppingOrder = shoppingOrder;
+        return this;
+    }
 
 }

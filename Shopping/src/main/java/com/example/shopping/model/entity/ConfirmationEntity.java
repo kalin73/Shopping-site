@@ -8,11 +8,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "confirmations")
-public class ConfirmationEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class ConfirmationEntity extends BaseEntity{
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private LocalDateTime created;
@@ -22,7 +18,9 @@ public class ConfirmationEntity {
 
     @Column
     private String token;
+
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
     public ConfirmationEntity() {
@@ -34,15 +32,6 @@ public class ConfirmationEntity {
         this.created = LocalDateTime.now();
         this.expire = created.plusMinutes(3L);
         this.token = UUID.randomUUID().toString();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public ConfirmationEntity setId(Long id) {
-        this.id = id;
-        return this;
     }
 
     public LocalDateTime getCreated() {

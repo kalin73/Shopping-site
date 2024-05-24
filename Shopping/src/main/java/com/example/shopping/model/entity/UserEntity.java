@@ -1,23 +1,16 @@
 package com.example.shopping.model.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "users")
-public class UserEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class UserEntity extends BaseEntity {
     @Column(name = "first_name")
     private String firstName;
 
@@ -53,15 +46,6 @@ public class UserEntity {
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public UserEntity setId(Long id) {
-        this.id = id;
-        return this;
     }
 
     public String getFirstName() {
@@ -109,16 +93,16 @@ public class UserEntity {
         return this;
     }
 
-	public Boolean getEnabled() {
-		return isEnabled;
-	}
+    public Boolean getEnabled() {
+        return isEnabled;
+    }
 
-	public UserEntity setEnabled(Boolean enabled) {
-		isEnabled = enabled;
-		return this;
-	}
+    public UserEntity setEnabled(Boolean enabled) {
+        isEnabled = enabled;
+        return this;
+    }
 
-	public List<OrderEntity> getOrders() {
+    public List<OrderEntity> getOrders() {
         return orders;
     }
 

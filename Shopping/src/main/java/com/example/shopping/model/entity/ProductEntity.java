@@ -1,18 +1,14 @@
 package com.example.shopping.model.entity;
 
+import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.*;
-
 @Entity
 @Table(name = "products")
-public class ProductEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class ProductEntity extends BaseEntity {
     @Column(name = "product_name", nullable = false)
     private String productName;
 
@@ -53,15 +49,6 @@ public class ProductEntity {
         this.videoUrl = videoUrl;
         this.category = category;
         this.specs = specs;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public ProductEntity setId(Long id) {
-        this.id = id;
-        return this;
     }
 
     public String getProductName() {
