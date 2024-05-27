@@ -6,6 +6,8 @@ import com.example.shopping.model.entity.CategoryEntity;
 import com.example.shopping.model.enums.Category;
 import com.example.shopping.repository.CategoryRepository;
 import com.example.shopping.repository.ProductRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,18 +25,17 @@ public class ProductService {
     }
 
     public List<ProductViewDto> getAllProducts() {
-        List<ProductViewDto> products = this.productRepository.findAll().stream().map(ProductViewDto::mapToProductDto)
+        return this.productRepository.findAll()
+                .stream()
+                .map(ProductViewDto::mapToProductDto)
                 .collect(Collectors.toList());
-
-        return products;
     }
 
     public List<ProductViewDto> search(String prod) {
-        List<ProductViewDto> products = this.productRepository.search(prod).orElse(null).stream()
-                .map(ProductViewDto::mapToProductDto).toList();
-
-        return products;
-
+        return this.productRepository.search(prod).orElse(null)
+                .stream()
+                .map(ProductViewDto::mapToProductDto)
+                .toList();
     }
 
     public List<ProductViewDto> getProductsFromCatName(String categoryName) {
@@ -43,23 +44,29 @@ public class ProductService {
         return loadItemsByCategory(category);
     }
 
+    @Cacheable(cacheNames = "productsByCat")
     public List<ProductViewDto> getProductsFromCat(CategoryEntity category) {
         return loadItemsByCategory(category);
     }
 
     @Transactional
     public DetailedProductViewDto getProductById(long id) {
-        DetailedProductViewDto product = this.productRepository.findById(id)
-                .map(DetailedProductViewDto::mapToDetailedView).get();
-
-        return product;
+        return this.productRepository.findById(id)
+                .map(DetailedProductViewDto::mapToDetailedView)
+                .get();
     }
 
     private List<ProductViewDto> loadItemsByCategory(CategoryEntity category) {
-        List<ProductViewDto> products = this.productRepository.findAllByCategoryAndQuantityGreaterThan(category, 0).orElseGet(null).stream()
-                .map(ProductViewDto::mapToProductDto).toList();
+        return this.productRepository.findAllByCategoryAndQuantityGreaterThan(category, 0).orElseGet(null)
+                .stream()
+                .map(ProductViewDto::mapToProductDto)
+                .toList();
+    }
 
-        return products;
+
+    @CacheEvict(cacheNames = "productsByCat", allEntries = true)
+    public void refreshProductsByCategory() {
+
     }
 
 }

@@ -14,33 +14,39 @@ import java.util.List;
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class ProductsRestController {
-	private final ProductService productService;
-	private final CategoryService categoryService;
+    private final ProductService productService;
+    private final CategoryService categoryService;
+    private long categoryId;
 
-	public ProductsRestController(ProductService productService, CategoryService categoryService) {
-		this.productService = productService;
-		this.categoryService = categoryService;
-	}
+    public ProductsRestController(ProductService productService, CategoryService categoryService) {
+        this.productService = productService;
+        this.categoryService = categoryService;
+    }
 
-	@GetMapping("/products")
-	public ResponseEntity<List<ProductViewDto>> getAllProducts() {
-		List<ProductViewDto> products = this.productService.getAllProducts();
+    @GetMapping("/products")
+    public ResponseEntity<List<ProductViewDto>> getAllProducts() {
+        List<ProductViewDto> products = this.productService.getAllProducts();
 
-		return ResponseEntity.ok(products);
-	}
+        return ResponseEntity.ok(products);
+    }
 
-	@GetMapping("/product/{id}")
-	public ResponseEntity<List<ProductViewDto>> getProducts(@PathVariable(name = "id") Long id) {
-		CategoryEntity category = this.categoryService.getCategoryById(id);
-		List<ProductViewDto> products = this.productService.getProductsFromCat(category);
+    @GetMapping("/product/{id}")
+    public ResponseEntity<List<ProductViewDto>> getProducts(@PathVariable(name = "id") Long id) {
+        if (categoryId != id) {
+            this.productService.refreshProductsByCategory();
+            this.categoryService.refreshCategory();
+            this.categoryId = id;
+        }
+        CategoryEntity category = this.categoryService.getCategoryById(id);
+        List<ProductViewDto> products = this.productService.getProductsFromCat(category);
 
-		return ResponseEntity.ok(products);
-	}
+        return ResponseEntity.ok(products);
+    }
 
-	@GetMapping("/product/info/{id}")
-	public ResponseEntity<DetailedProductViewDto> getProduct(@PathVariable(name = "id") Long id) {
-		DetailedProductViewDto product = this.productService.getProductById(id);
+    @GetMapping("/product/info/{id}")
+    public ResponseEntity<DetailedProductViewDto> getProduct(@PathVariable(name = "id") Long id) {
+        DetailedProductViewDto product = this.productService.getProductById(id);
 
-		return ResponseEntity.ok(product);
-	}
+        return ResponseEntity.ok(product);
+    }
 }
