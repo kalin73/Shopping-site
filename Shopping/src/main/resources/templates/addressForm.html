@@ -26,7 +26,7 @@
                 </div>
                 <div class="inputBox">
                     <span>Phone number: </span>
-                    <input type="text" name="phoneNumber" th:field="*{phoneNumber}"/>
+                    <input type="tel" name="phoneNumber" th:field="*{phoneNumber}" pattern="[0-9]{10}"/>
                 </div>
                 <div class="inputBox">
                     <span>Country: </span>

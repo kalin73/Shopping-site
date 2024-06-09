@@ -45,7 +45,7 @@
                 <label>Password</label>
             </div>
             <div class="txt_field">
-                <input id="phoneNumber" name="phoneNumber" th:value="*{phoneNumber}" required>
+                <input type="tel" id="phoneNumber" name="phoneNumber" th:value="*{phoneNumber}" pattern="[0-9]{10}">
                 <span></span>
                 <label>Phone</label>
             </div>
