@@ -1,9 +1,9 @@
 package com.example.shopping.model.dto;
 
+import com.example.shopping.validation.ValidatePhoneNumber;
 import com.example.shopping.validation.ValidateUniqueEmail;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 public class RegisterFormDto {
     @NotBlank
@@ -18,7 +18,7 @@ public class RegisterFormDto {
 
     private String password;
 
-    @Size(min = 10, max = 10)
+    @ValidatePhoneNumber
     private String phoneNumber;
 
     public RegisterFormDto() {
