@@ -31,6 +31,10 @@ html {
     background: none;
 }
 
+.container {
+    margin-top: 100px;
+}
+
 .btn:hover {
     background: #FF8C00;
     color: #FFF;
@@ -92,37 +96,37 @@ html {
     }
 }
 
-#information{
+#information {
     width: 100%;
     display: table;
 }
 
-#information #pictures img{
+#information #pictures img {
     width: 580;
     height: 600px;
 }
 
-#information #productName{
+#information #productName {
     padding: 0px 150px;
     font-size: 3rem;
 }
 
-#information #productPrice{
+#information #productPrice {
     font-size: 2.6rem;
     padding-right: 100px;
     color: #FF0000;
 }
 
-#information #color{
+#information #color {
     background: #F8F8FF;
 }
 
-#information th{
+#information th {
     font-size: 1.8rem;
     text-align: center;
 }
 
-#information td{
+#information td {
     font-size: 1.8rem;
     text-align: center;
     border: 1px solid #DCDCDC;
@@ -146,7 +150,7 @@ html {
     color: #FFF;
 }
 
-#frame{
+#frame {
     margin: 20px 300px;
     width: 1200px;
     height: 600px;
