@@ -2,69 +2,85 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
 </head>
 
 <body>
-	<header class="header" th:fragment="header">
-		<a href="/" class="logo"><img src="/images/logo.png" width="120" height="80"></a>
+<header class="header" th:fragment="header">
+    <a href="/" class="logo"><img src="/images/logo.png" width="120" height="80"></a>
 
-		<nav class="navbar">
-			<a href="/">Home</a>
-			<a href="/categories">Categories</a>
-			<a href="/reviews">Reviews</a>
-			<a href="/aboutUs">About Us</a>
-		</nav>
+    <nav class="navbar">
+        <a href="/" th:text="#{nav_bar_home}">Home</a>
+        <a href="/categories" th:text="#{nav_bar_categories}">Categories</a>
+        <a href="/reviews" th:text="#{nav_bar_reviews}">Reviews</a>
+        <a href="/aboutUs" th:text="#{nav_bar_about_us}">About Us</a>
 
-		<div class="icons">
-			<div class="fas fa-bars" id="menu"></div>
-			<div class="fas fa-search" id="search"></div>
-			<div class="fas fa-shopping-cart" id="cart"></div>
-			<div sec:authorize="isAnonymous()" class="fas fa-user" id="user"></div>
-			<a href="/profile"><div sec:authorize="isAuthenticated()" class="fas fa-user" id="user1"></div></a>
-			<a href="/billingAddress"><div sec:authorize="isAuthenticated()" class="fa fa-cog"></div></a>
-		</div>
+    </nav>
 
-		<form th:action="@{/products/search}" th:method="GET" class="search-form">
-			<input type="search" id="search-box" name="filter" placeholder="Search here..." />
-			<label for="search-box" class="fas fa-search"></label>
-		</form>
+    <div class="icons">
+        <div class="fas fa-bars" id="menu"></div>
+        <div class="fas fa-search" id="search"></div>
+        <div class="fas fa-shopping-cart" id="cart"></div>
+        <div sec:authorize="isAnonymous()" class="fas fa-user" id="user"></div>
+        <a href="/profile">
+            <div sec:authorize="isAuthenticated()" class="fas fa-user" id="user1"></div>
+        </a>
+        <a href="/billingAddress">
+            <div sec:authorize="isAuthenticated()" class="fa fa-cog"></div>
+        </a>
+    </div>
 
-		<div class="shopping-cart">
-			<div class="box" th:each="item : ${cartItems}" th:object="${item}">
-				<a th:href="@{/delete/{id}(id=*{id})}" class="fas fa-trash"></a>
-				<img th:src="*{image}" />
-				<div class="content">
-					<h3 th:text="*{productName}"></h3>
-					<span class="price" th:text="*{amount}"></span><br />
-					<span class="quantity" th:text="*{quantity}"></span>
-				</div>
-			</div>
-			<div th:switch="${total}" class="total">
-				<h3 th:case="null" th:text="'Total: 0'"></h3>
-				<h3 th:case="*" th:text="'Total: ' + ${total}"></h3>
-			</div>
-			<a href="/order/checkout" class="btn">Checkout</a>
-		</div>
+    <form th:action="@{/products/search}" th:method="GET" class="search-form">
+        <input type="search" id="search-box" name="filter" placeholder="Search here..."/>
+        <label for="search-box" class="fas fa-search"></label>
+    </form>
 
-		<form sec:authorize="isAnonymous()" th:action="@{/auth/login}" th:method="POST" class="login">
-			<h3>LogIn</h3>
-			<input type="email" name="email" placeholder="Enter email..." class="box" />
-			<input type="password" name="password" placeholder="Enter password..." class="box" />
-			<p>Forgot your password? <a href="/auth/forgotPassword">Click Here</a></p>
-			<p>Don't have an account<a href="/auth/register">Create Now</a></p>
-			<input type="submit" value="Login Now" class="btn" />
-			<p th:if="${isNotValid}" class="errors alert alert-danger">Please verify your email first!</p>
-			<p th:if="${bad_credentials}" class="errors alert alert-danger">Invalid
-				username or password.</p>
-		</form>
-		<div sec:authorize="isAuthenticated()" style="float: right;">
-			<form th:method="POST" th:action="@{/logout}">
-				<input class="btn" type="submit" value="Logout">
-			</form>
-		</div>
-	</header>
+    <div class="shopping-cart">
+        <div class="box" th:each="item : ${cartItems}" th:object="${item}">
+            <a th:href="@{/delete/{id}(id=*{id})}" class="fas fa-trash"></a>
+            <img th:src="*{image}"/>
+            <div class="content">
+                <h3 th:text="*{productName}"></h3>
+                <span class="price" th:text="*{amount}"></span><br/>
+                <span class="quantity" th:text="*{quantity}"></span>
+            </div>
+        </div>
+        <div th:switch="${total}" class="total">
+            <h3 th:case="null" th:text="'Total: 0'"></h3>
+            <h3 th:case="*" th:text="'Total: ' + ${total}"></h3>
+        </div>
+        <a href="/order/checkout" class="btn">Checkout</a>
+    </div>
+
+    <form sec:authorize="isAnonymous()" th:action="@{/auth/login}" th:method="POST" class="login">
+        <h3 th:text="#{nav_bar_login}">LogIn</h3>
+        <input type="email" name="email" placeholder="Enter email..." class="box"/>
+        <input type="password" name="password" placeholder="Enter password..." class="box"/>
+        <p>Forgot your password? <a href="/auth/forgotPassword">Click Here</a></p>
+        <p>Don't have an account<a href="/auth/register">Create Now</a></p>
+        <input type="submit" value="Login Now" class="btn"/>
+        <p th:if="${isNotValid}" class="errors alert alert-danger">Please verify your email first!</p>
+        <p th:if="${bad_credentials}" class="errors alert alert-danger">Invalid
+            username or password.</p>
+    </form>
+    <div sec:authorize="isAuthenticated()" style="float: right;">
+        <form th:method="POST" th:action="@{/logout}">
+            <input class="btn" type="submit" th:value="#{nav_bar_logout}">
+        </form>
+    </div>
+
+    <a class="lng" style="float: right; font-size: 1.7rem; margin: 0 1rem; color: #000;">
+        <form method="GET">
+            <label for="lang" th:text="#{nav_bar_language}">Language</label>
+            <select id="lang" name="lang" onchange="this.form.submit()">
+                <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+
+                <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+            </select>
+        </form>
+    </a>
+</header>
 </body>
 
 </html>
