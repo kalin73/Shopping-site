@@ -19,11 +19,11 @@ html {
     scroll-padding-top: 7rem;
 }
 
-body{
+body {
     background: #EEE;
 }
 
-section{
+section {
     padding: 2rem 9%;
 }
 
@@ -80,17 +80,17 @@ section{
     color: #000;
 }
 
-.header .navbar a {
+.header .navbar a, .lng {
     font-size: 1.7rem;
     margin: 0 1rem;
     color: #000;
 }
 
-.header .navbar a:hover{
+.header .navbar a:hover {
     color: #FF8C00;
 }
 
-.header .icons{
+.header .icons {
     padding-right: 120px;
     display: flex;
 }
@@ -112,7 +112,7 @@ section{
     color: #FFF;
 }
 
-#menu{
+#menu {
     display: none;
 }
 
@@ -152,7 +152,7 @@ section{
     cursor: pointer;
 }
 
-.header .search-form label:hover{
+.header .search-form label:hover {
     color: #FF8C00;
 }
 
@@ -180,7 +180,7 @@ section{
     margin: 1rem 0;
 }
 
-.header .shopping-cart .box img{
+.header .shopping-cart .box img {
     height: 8rem;
 }
 
@@ -194,7 +194,7 @@ section{
     transform: translateY(-50%);
 }
 
-.header .shopping-cart .box .fa-trash:hover{
+.header .shopping-cart .box .fa-trash:hover {
     color: #FF8C00;
 }
 
@@ -204,7 +204,7 @@ section{
     padding-bottom: 1rem;
 }
 
-.header .shopping-cart .box .content span{
+.header .shopping-cart .box .content span {
     color: #808080;
     font-size: 1.5rem;
 }
@@ -277,22 +277,22 @@ section{
         font-size: 55%;
     }
 
-    .header{
+    .header {
         padding: 2rem;
     }
 
-    section{
+    section {
         padding: 2rem;
     }
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
 
-    #menu{
+    #menu {
         display: inline-block;
     }
 
-    .header .search-form{
+    .header .search-form {
         width: 90%;
     }
 
@@ -312,7 +312,7 @@ section{
         display: block;
     }
 
-    .header .navbar.active{
+    .header .navbar.active {
         right: 2rem;
         transition: .4s linear;
     }
@@ -323,7 +323,7 @@ section{
         font-size: 50%;
     }
 
-    .heading{
+    .heading {
         font-size: 2.5rem;
     }
 }
@@ -349,7 +349,7 @@ section{
     font-size: 3rem;
 }
 
-.home .content h3 span{
+.home .content h3 span {
     color: #FF8C00;
 }
 
@@ -360,12 +360,12 @@ section{
     line-height: 1.8rem;
 }
 
-.home .content .btn{
+.home .content .btn {
     background: #FF8C00;
     color: #FFF;
 }
 
-.home .content .btn:hover{
+.home .content .btn:hover {
     background: #32CD32;
     color: #FFF;
 }
@@ -408,11 +408,11 @@ section{
     padding: 1rem 0;
 }
 
-.product .productSlide{
+.product .productSlide {
     padding: 1rem;
 }
 
-.product .productSlide:first-child{
+.product .productSlide:first-child {
     margin-bottom: 2rem;
 }
 
@@ -426,11 +426,11 @@ section{
     box-shadow: #EEE;
 }
 
-.product .productSlide .box img{
+.product .productSlide .box img {
     height: 20rem;
 }
 
-.product .productSlide .box h3{
+.product .productSlide .box h3 {
     font-size: 2.5rem;
     color: #000;
 }
@@ -447,7 +447,7 @@ section{
     padding: .5rem 0;
 }
 
-.review .reviewSlide{
+.review .reviewSlide {
     padding: 1rem;
 }
 
@@ -507,7 +507,7 @@ section{
     padding: 1rem 0;
 }
 
-.technology .boxContainer .box h3 i{
+.technology .boxContainer .box h3 i {
     color: #FF8C00;
 }
 
@@ -523,7 +523,7 @@ section{
     padding-right: .5rem;
 }
 
-.technology .boxContainer .box .links:hover i{
+.technology .boxContainer .box .links:hover i {
     padding-right: 2rem;
 }
 
