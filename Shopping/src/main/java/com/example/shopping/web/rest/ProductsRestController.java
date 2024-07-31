@@ -30,14 +30,14 @@ public class ProductsRestController {
         return ResponseEntity.ok(products);
     }
 
-    @GetMapping("/product/{id}")
-    public ResponseEntity<List<ProductViewDto>> getProducts(@PathVariable(name = "id") Long id) {
-        if (categoryId != id) {
+    @GetMapping("/product/{catId}")
+    public ResponseEntity<List<ProductViewDto>> getAllProductsFromCategory(@PathVariable(name = "catId") Long catId) {
+        if (categoryId != catId) {
             this.productService.refreshProductsByCategory();
             this.categoryService.refreshCategory();
-            this.categoryId = id;
+            this.categoryId = catId;
         }
-        CategoryEntity category = this.categoryService.getCategoryById(id);
+        CategoryEntity category = this.categoryService.getCategoryById(catId);
         List<ProductViewDto> products = this.productService.getProductsFromCat(category);
 
         return ResponseEntity.ok(products);
