@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.example.shopping.model.entity.CategoryEntity;
 import com.example.shopping.model.entity.ProductEntity;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
@@ -21,6 +22,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
     @Query("UPDATE ProductEntity p SET p.quantity=p.quantity - :amount WHERE p.productName=:name")
     @Modifying
+    @Transactional
     void updateQuantity(int amount, String name);
 
 }
