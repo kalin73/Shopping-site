@@ -9,6 +9,6 @@ public class PhoneNumberValidator implements ConstraintValidator<ValidatePhoneNu
 
     @Override
     public boolean isValid(String phoneNumber, ConstraintValidatorContext context) {
-        return Pattern.matches("[0-9]{10}", phoneNumber);
+        return Pattern.matches("\\d{10}", phoneNumber);
     }
 }
