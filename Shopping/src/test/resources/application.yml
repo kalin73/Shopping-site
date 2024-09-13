@@ -11,3 +11,6 @@ spring:
     properties:
       verify:
         host: http://localhost:8080
+
+env:
+  dev: false

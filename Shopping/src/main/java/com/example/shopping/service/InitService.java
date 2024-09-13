@@ -6,6 +6,7 @@ import com.example.shopping.model.entity.SpecificationsEntity;
 import com.example.shopping.model.enums.Category;
 import com.example.shopping.repository.*;
 import com.google.gson.Gson;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,9 @@ public class InitService {
     private final OrderItemRepository orderItemRepository;
     private final CategoryRepository categoryRepository;
 
+    @Value("${env.dev}")
+    private boolean env;
+
     public InitService(ProductRepository productRepository, Gson gson,
                        SpecificationsRepository specificationsRepository, ShoppingItemRepository shoppingItemRepository,
                        OrderItemRepository orderItemRepository, CategoryRepository categoryRepository) {
@@ -37,41 +41,43 @@ public class InitService {
     }
 
     public void initDb() {
-        if (categoryRepository.count() == 0) {
-            for (Category c : Category.values()) {
-                this.categoryRepository.save(new CategoryEntity(c));
-            }
-        }
-
-        try (InputStream inputStream = new ClassPathResource("products.json").getInputStream()) {
-            List<ProductEntity> products = Arrays.stream(gson.fromJson(new String(inputStream.readAllBytes(), StandardCharsets.UTF_8),
-                    ProductEntity[].class)).toList();
-
-            List<SpecificationsEntity> specs = new ArrayList<>();
-
-            for (ProductEntity product : products) {
-                specs.addAll(product.getSpecs());
-            }
-
-            inputStream.close();
-
-            if (productRepository.count() != products.size() || specificationsRepository.count() != specs.size()) {
-                this.orderItemRepository.deleteAll();
-                this.shoppingItemRepository.deleteAll();
-                this.specificationsRepository.deleteAll();
-                this.productRepository.deleteAll();
-
-                products = this.productRepository.saveAll(products);
-
-                for (ProductEntity product : products) {
-                    product.getSpecs().forEach(sp -> {
-                        sp.setProduct(product);
-                        this.specificationsRepository.save(sp);
-                    });
+        if (env) {
+            if (categoryRepository.count() == 0) {
+                for (Category c : Category.values()) {
+                    this.categoryRepository.save(new CategoryEntity(c));
                 }
             }
-        } catch (IOException e) {
-            System.out.println("File doesn't exist!");
+
+            try (InputStream inputStream = new ClassPathResource("products.json").getInputStream()) {
+                List<ProductEntity> products = Arrays.stream(gson.fromJson(new String(inputStream.readAllBytes(), StandardCharsets.UTF_8),
+                        ProductEntity[].class)).toList();
+
+                List<SpecificationsEntity> specs = new ArrayList<>();
+
+                for (ProductEntity product : products) {
+                    specs.addAll(product.getSpecs());
+                }
+
+                inputStream.close();
+
+                if (productRepository.count() != products.size() || specificationsRepository.count() != specs.size()) {
+                    this.orderItemRepository.deleteAll();
+                    this.shoppingItemRepository.deleteAll();
+                    this.specificationsRepository.deleteAll();
+                    this.productRepository.deleteAll();
+
+                    products = this.productRepository.saveAll(products);
+
+                    for (ProductEntity product : products) {
+                        product.getSpecs().forEach(sp -> {
+                            sp.setProduct(product);
+                            this.specificationsRepository.save(sp);
+                        });
+                    }
+                }
+            } catch (IOException e) {
+                System.out.println("File doesn't exist!");
+            }
         }
     }
 }
