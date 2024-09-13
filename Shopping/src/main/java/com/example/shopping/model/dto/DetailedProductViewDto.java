@@ -33,6 +33,7 @@ public class DetailedProductViewDto {
 		this.image = image;
 		this.video = video;
 		this.specs = specs;
+		this.description = description;
 	}
 
 	public Long getId() {
