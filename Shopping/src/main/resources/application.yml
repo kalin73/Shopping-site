@@ -8,10 +8,9 @@ logging:
           descriptor: TRACE
 spring:
   datasource:
-    url: jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/${DB_NAME:shopping}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
   jpa:
     hibernate:
       ddl-auto: update
