@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -45,8 +46,8 @@ public class ProductsRestController {
 
     @GetMapping("/product/info/{id}")
     public ResponseEntity<DetailedProductViewDto> getProductById(@PathVariable(name = "id") Long id) {
-        DetailedProductViewDto product = this.productService.getProductById(id);
+        Optional<DetailedProductViewDto> product = this.productService.getProductById(id);
 
-        return ResponseEntity.ok(product);
+        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

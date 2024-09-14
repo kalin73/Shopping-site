@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,10 +51,9 @@ public class ProductService {
     }
 
     @Transactional
-    public DetailedProductViewDto getProductById(long id) {
+    public Optional<DetailedProductViewDto> getProductById(long id) {
         return this.productRepository.findById(id)
-                .map(DetailedProductViewDto::mapToDetailedView)
-                .get();
+                .map(DetailedProductViewDto::mapToDetailedView);
     }
 
     private List<ProductViewDto> loadItemsByCategory(CategoryEntity category) {
