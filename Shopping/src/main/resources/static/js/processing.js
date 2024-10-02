@@ -4,7 +4,7 @@ let categoryId = document.getElementById("categoryId").getAttribute("value");
 let productSection = document.getElementById("products");
 
 
-fetch("http://localhost:8080/api/product/" + categoryId)
+fetch("http://localhost:8080/api/products/" + categoryId)
     .then(response => response.json())
     .then(element => {
         element.forEach(product => {
