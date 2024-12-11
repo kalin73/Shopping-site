@@ -8,7 +8,7 @@ E-commerce website for IT products. Users can make an account, login after they 
 
 ## Tech Stack
 
-**Back-end:** Java, Spring web
+**Back-end:** Java, Spring Boot (Web, Data JPA)
 
 **Front-end:** HTML, CSS, JavaScript, Thymeleaf
 
