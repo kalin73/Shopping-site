@@ -3,12 +3,12 @@ E-commerce website for IT products. Users can make an account, login after they 
 ## Authors
 
 - [@Kalin](https://github.com/kalin73) (Back-end)
-- [@Strahil](https://github.com/Strahil731) (Front-end)
+- @Strahil (Front-end)
 
 
 ## Tech Stack
 
-**Back-end:** Java, Spring web
+**Back-end:** Java, Spring Boot (Web, Data JPA)
 
 **Front-end:** HTML, CSS, JavaScript, Thymeleaf
 
