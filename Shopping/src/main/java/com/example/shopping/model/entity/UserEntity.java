@@ -1,9 +1,6 @@
 package com.example.shopping.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +32,13 @@ public class UserEntity extends BaseEntity {
     @OneToMany(mappedBy = "user")
     private List<AddressEntity> deliveryAddresses;
 
+    @OneToMany(mappedBy = "user", targetEntity = LoginLog.class, fetch = FetchType.EAGER)
+    private List<LoginLog> logs;
+
     public UserEntity() {
         orders = new ArrayList<>();
         deliveryAddresses = new ArrayList<>();
+        logs = new ArrayList<>();
     }
 
     public UserEntity(String firstName, String lastName, String email, String password, String phoneNumber) {
@@ -119,4 +120,12 @@ public class UserEntity extends BaseEntity {
         this.deliveryAddresses = deliveryAddresses;
     }
 
+    public List<LoginLog> getLogs() {
+        return logs;
+    }
+
+    public UserEntity setLogs(List<LoginLog> logs) {
+        this.logs = logs;
+        return this;
+    }
 }
