@@ -13,6 +13,15 @@ public class LoginLog extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private UserEntity user;
 
+    public LoginLog() {
+
+    }
+
+    public LoginLog(LocalDateTime loginTime, UserEntity user) {
+        this.loginTime = loginTime;
+        this.user = user;
+    }
+
     public LocalDateTime getLoginTime() {
         return loginTime;
     }
