@@ -44,5 +44,14 @@ spring:
             required: true
       verify:
         host: http://localhost:8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  server:
+    port: 8082
+
 env:
   dev: true
