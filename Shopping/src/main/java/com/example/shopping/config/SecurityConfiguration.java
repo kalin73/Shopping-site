@@ -29,11 +29,9 @@ public class SecurityConfiguration {
                         .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
                         .requestMatchers(SECURED_ENDPOINTS)
                         .authenticated())
-                .formLogin(
-                        login -> login.loginPage("/auth/login").usernameParameter("email").passwordParameter("password")
+                .formLogin(login -> login.loginPage("/auth/login").usernameParameter("email").passwordParameter("password")
                                 .defaultSuccessUrl("/", true).failureForwardUrl("/auth/login-error"))
                 .logout(out -> out.logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true))
-                .rememberMe(me -> me.key("someUniqueKey").tokenValiditySeconds(604800))
                 .cors(CorsConfigurer::disable)
                 .csrf(CsrfConfigurer::disable);
 
