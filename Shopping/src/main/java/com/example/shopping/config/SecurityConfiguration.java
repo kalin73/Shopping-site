@@ -16,16 +16,18 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfiguration {
+    private static final String[] OPEN_ENDPOINTS = {"/auth/**", "/", "/add/**", "/api/**", "/products/**", "/reviews", "/product/**", "/categories", "/aboutUs"};
+    private static final String[] SECURED_ENDPOINTS = {"/deleteCart", "/delete/**", "/order/**", "/profile", "/billingAddress", "/creditCard/**"};
 
     @Bean
     SecurityFilterChain secFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/auth/**", "/", "/add/**", "/api/**", "/products/**", "/reviews", "/product/**", "/categories", "/aboutUs")
+                        .requestMatchers(OPEN_ENDPOINTS)
                         .permitAll()
                         .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
-                        .requestMatchers("/deleteCart", "/delete/**", "/order/**", "/profile", "/billingAddress", "/creditCard/**")
+                        .requestMatchers(SECURED_ENDPOINTS)
                         .authenticated())
                 .formLogin(
                         login -> login.loginPage("/auth/login").usernameParameter("email").passwordParameter("password")
