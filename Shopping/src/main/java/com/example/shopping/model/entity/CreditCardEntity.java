@@ -13,9 +13,6 @@ public class CreditCardEntity extends BaseEntity {
     @Column(name = "card_number")
     private String cardNumber;
 
-    @Column(name = "CVC_code")
-    private String cvcCode;
-
     @Column(name = "expiration_date")
     private LocalDate expDate;
 
@@ -27,10 +24,9 @@ public class CreditCardEntity extends BaseEntity {
 
     }
 
-    public CreditCardEntity(String ownerName, String cardNumber, String cvcCode, LocalDate expDate, UserEntity user) {
+    public CreditCardEntity(String ownerName, String cardNumber, LocalDate expDate, UserEntity user) {
         this.ownerName = ownerName;
         this.cardNumber = cardNumber;
-        this.cvcCode = cvcCode;
         this.expDate = expDate;
         this.user = user;
     }
@@ -50,15 +46,6 @@ public class CreditCardEntity extends BaseEntity {
 
     public CreditCardEntity setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
-        return this;
-    }
-
-    public String getCvcCode() {
-        return cvcCode;
-    }
-
-    public CreditCardEntity setCvcCode(String cvcCode) {
-        this.cvcCode = cvcCode;
         return this;
     }
 
