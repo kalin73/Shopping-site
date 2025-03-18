@@ -13,14 +13,11 @@ import java.time.LocalDate;
 @Service
 public class CreditCardService {
     private final CreditCardRepository creditCardRepository;
-
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
-    public CreditCardService(CreditCardRepository creditCardRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public CreditCardService(CreditCardRepository creditCardRepository, UserRepository userRepository) {
         this.creditCardRepository = creditCardRepository;
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     public void addCreditCard(CreditCardForm creditCardForm, String email) {
@@ -28,7 +25,6 @@ public class CreditCardService {
 
         CreditCardEntity card = new CreditCardEntity();
         card.setCardNumber(creditCardForm.getCardNumber().replace(" ", ""))
-                .setCvcCode(passwordEncoder.encode(creditCardForm.getCvcCode()))
                 .setUser(user)
                 .setOwnerName(creditCardForm.getOwnerName())
                 .setExpDate(LocalDate.of(creditCardForm.getYear(), Integer.parseInt(creditCardForm.getMonth()), 1));
