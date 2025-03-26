@@ -7,24 +7,33 @@
     <title>Order checkout</title>
     <link rel="icon" type="image/icon" href="/images/logo.png"/>
     <link rel="stylesheet" type="text/css" href="/css/orderCheckout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/register.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 </head>
 <body>
 <div class="container">
     <h1 class="form-title">Order checkout</h1>
-    <form th:action="@{/order/placeOrder}" th:method="POST" class="form">
+    <form th:action="@{/order/placeOrder}" th:method="POST" th:object="${order}" class="form">
         <div class="main-user-info">
             <div class="user-input-box">
                 <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" name="fullName" placeholder="Enter Full Name"/>
+                <input type="text" id="fullName" name="fullName" th:value="*{fullName}" placeholder="Enter Full Name"/>
             </div>
+            <p th:if="${#fields.hasErrors('fullName')}" th:text="${#fields.errors('fullName')[0]}">
+            </p>
             <div class="user-input-box">
                 <label for="fullName">Phone number</label>
-                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number"/>
+                <input type="text" id="phoneNumber" name="phoneNumber" th:value="*{phoneNumber}" placeholder="Enter Phone Number"/>
             </div>
+            <p th:if="${#fields.hasErrors('phoneNumber')}" th:text="${#fields.errors('phoneNumber')[0]}">
+            </p>
             <div class="user-input-box">
                 <label for="fullName">Shipping address</label>
-                <input type="text" id="shippingAddress" name="shippingAddress" placeholder="Enter Shipping address"/>
+                <input type="text" id="shippingAddress" name="shippingAddress" th:value="*{shippingAddress}" placeholder="Enter Shipping address"/>
             </div>
+            <p th:if="${#fields.hasErrors('shippingAddress')}" th:text="${#fields.errors('shippingAddress')[0]}">
+            </p>
         </div>
         <div class="patment">
             <span class="payment-title">Payment Method</span>
@@ -34,6 +43,8 @@
                 <input type="radio" id="cash" name="paymentMethod" value="CASH"/>
                 <label for="cash">Cash</label>
             </div>
+            <p th:if="${#fields.hasErrors('paymentMethod')}" th:text="${#fields.errors('paymentMethod')[0]}">
+            </p>
         </div>
         <div class="success">
             <button id="btn">Place order</button>
