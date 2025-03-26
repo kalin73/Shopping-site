@@ -1,22 +1,21 @@
 package com.example.shopping.model.dto;
 
 import com.example.shopping.validation.ValidatePhoneNumber;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class OrderDto {
-    @Pattern(regexp = "[A-Za-z]{3,20}\\s?[A-Za-z]{3,20}\\s?[A-Za-z]{3,20}")
+    @Pattern(regexp = "[A-Za-z]{2,20}\\s?[A-Za-z]{0,20}\\s?[A-Za-z]{0,20}", message = "Full name should be at least 2 letters long")
     private String fullName;
 
     @ValidatePhoneNumber
     private String phoneNumber;
 
-    @Size(min = 3, max = 100)
+    @Size(min = 3, max = 100, message = "Address should be between 3 and 100 symbols long")
     private String shippingAddress;
 
-    @NotNull
+    @NotNull(message = "Please chose payment method")
     private String paymentMethod;
 
     public OrderDto() {
