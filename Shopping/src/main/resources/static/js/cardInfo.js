@@ -55,31 +55,38 @@ const cardNumber = document.getElementById("cardNumber");
 const owner = document.getElementById("ownerName");
 const month = document.getElementById("month");
 const year = document.getElementById("year");
-const ccvCode = document.getElementById("ccv");
+const cvcCode = document.getElementById("cvc");
 
-const btn = document.getElementById("submit-btn");
-btn.addEventListener('click', submit);
+function validate() {
+    const btn = document.getElementById("submit-btn");
+    btn.addEventListener('click', submit);
+}
 
 function submit(event) {
     event.preventDefault();
 
     if (cardNumber.value === "") {
-        alert("Please input your full name!");
+        alert("Please insert card number!");
         return;
     }
 
     if (owner.value === "") {
-        alert("Please input your phone number!");
+        alert("Card holder name should not be empty!");
         return;
     }
 
     if (month.value === "") {
-        alert("Please input shipping address!");
+        alert("Please select expiration month!");
         return;
     }
 
     if (year.value === "") {
-        alert("Please check one of method to pay!");
+        alert("Please select expiration year!");
+        return;
+    }
+
+    if (cvcCode.value === "") {
+        alert("Please insert the three digit cvc code!");
         return;
     }
     alert("Your order has been approved!");
