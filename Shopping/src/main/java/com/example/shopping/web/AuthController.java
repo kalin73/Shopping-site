@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import static com.example.shopping.utils.Constants.BINDING_RESULT_PATH;
 import static com.example.shopping.utils.Utils.IS_VALID;
 
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
-    private static final String BINDING_RESULT_PATH = "org.springframework.validation.BindingResult.";
     private final UserService userService;
 
     public AuthController(UserService userService) {
