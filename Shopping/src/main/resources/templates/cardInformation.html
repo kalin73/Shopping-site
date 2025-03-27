@@ -58,19 +58,22 @@
                 </div>
             </div>
         </div>
-        <form th:action="@{/creditCard/payWithCard}" th:method="POST">
+        <!-- TODO Fix placement of error messages   -->
+        <form th:action="@{/creditCard/payWithCard}" th:method="POST" th:object="${creditCardForm}">
             <div class="inputBox">
                 <span>Card number</span>
-                <input type="text" id="cardNumber" name="cardNumber" maxlength="19" class="card-number-input"/>
+                <input type="text" id="cardNumber" name="cardNumber" th:value="*{cardNumber}" maxlength="19" class="card-number-input"/>
             </div>
+            <p th:if="${#fields.hasErrors('cardNumber')}" th:text="${#fields.errors('cardNumber')[0]}"></p>
             <div class="inputBox">
                 <span>Card holder</span>
-                <input type="text" id="ownerName" name="ownerName" maxlength="16" class="card-holder-input"/>
+                <input type="text" id="ownerName" name="ownerName" maxlength="16" th:value="*{ownerName}" class="card-holder-input"/>
             </div>
+            <p th:if="${#fields.hasErrors('ownerName')}" th:text="${#fields.errors('ownerName')[0]}"></p>
             <div class="flexBox">
                 <div class="inputBox">
-                    <span>expiration mm</span>
-                    <select name="month" id="month" class="month-input">
+                    <span>expiration month</span>
+                    <select name="month" id="month" class="month-input" th:value="*{month}">
                         <option value="month" selected disabled>month</option>
                         <option value="01">01</option>
                         <option value="02">02</option>
@@ -87,21 +90,23 @@
                     </select>
                 </div>
                 <div class="inputBox">
-                    <span>expiration mm</span>
-                    <select name="year" id="year" class="year-input">
+                    <span>expiration year</span>
+                    <select name="year" id="year" class="year-input" th:value="*{year}">
                         <option value="year" selected disabled>year</option>
-                        <option value="2023">2025</option>
-                        <option value="2023">2026</option>
-                        <option value="2023">2027</option>
-                        <option value="2023">2028</option>
-                        <option value="2023">2029</option>
-                        <option value="2023">2030</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
                     </select>
                 </div>
+                <p th:if="${#fields.hasErrors('year')}" th:text="${#fields.errors('year')[0]}"></p>
                 <div class="inputBox">
                     <span>CVV</span>
                     <input type="text" id="ccv" name="cvcCode" maxlength="4" class="cvv-input"/>
                 </div>
+                <p th:if="${#fields.hasErrors('cvcCode')}" th:text="${#fields.errors('cvcCode')[0]}"></p>
             </div>
             <div class="saveCard">
                 <input type="checkbox" name="save" id="save" value=true/>
