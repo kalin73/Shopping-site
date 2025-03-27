@@ -1,6 +1,7 @@
 package com.example.shopping.web;
 
 import com.example.shopping.model.dto.ApplicationUserDetails;
+import com.example.shopping.model.dto.CreditCardForm;
 import com.example.shopping.model.dto.OrderDto;
 import com.example.shopping.model.enums.PaymentMethod;
 import com.example.shopping.service.OrderService;
@@ -56,6 +57,7 @@ public class OrderController {
 
         if (order.getPaymentMethod().equals(PaymentMethod.CARD.name())) {
             this.shoppingCartService.loadShoppingCart(modelAndView, client);
+            modelAndView.addObject("creditCardForm", new CreditCardForm());
             modelAndView.setViewName("cardInformation");
 
             return modelAndView;
