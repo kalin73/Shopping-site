@@ -7,7 +7,7 @@ public class CreditCardForm {
     @Pattern(regexp = "[a-zA-Z]{2,20}\\s[a-zA-Z]{2,20}", message = "Invalid name format")
     private String ownerName;
 
-    @Pattern(regexp = "\\d{12}", message = "The card number should be exactly 12 digits")
+    @Pattern(regexp = "\\d{4}\\s?\\d{4}\\s?\\d{4}\\s?\\d{4}", message = "The card number should be exactly 12 digits")
     private String cardNumber;
 
     @Pattern(regexp = "\\d{3}", message = "The cvc code should be exactly 3 digits")
