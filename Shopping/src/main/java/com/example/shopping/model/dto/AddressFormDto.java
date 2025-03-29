@@ -1,22 +1,23 @@
 package com.example.shopping.model.dto;
 
+import com.example.shopping.validation.ValidatePhoneNumber;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Pattern;
 
 public class AddressFormDto {
-    @NotBlank
+    @Pattern(regexp = "[A-Za-z]{2,20}\\s?[A-Za-z]{0,20}\\s?[A-Za-z]{0,20}", message = "Full name should be at least 2 letters long")
     private String fullName;
 
-    @Size(min = 10, max = 10)
+    @ValidatePhoneNumber
     private String phoneNumber;
 
-    @NotBlank
+    @NotBlank(message = "Country should not be empty")
     private String country;
 
-    @NotBlank
+    @NotBlank(message = "City should not be empty")
     private String city;
 
-    @NotBlank
+    @NotBlank(message = "Address should not be empty")
     private String address;
 
     public AddressFormDto() {
