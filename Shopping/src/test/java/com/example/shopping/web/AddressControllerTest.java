@@ -81,7 +81,7 @@ public class AddressControllerTest {
                         .param("country", "Bulgaria")
                         .param("city", "Sofia")
                         .param("address", "Mladost"))
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().isBadRequest());
 
         assertEquals(0, addressRepository.count());
     }
