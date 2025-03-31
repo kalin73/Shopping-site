@@ -22,23 +22,27 @@
                 <div class="inputBox">
                     <span>Full Name: </span>
                     <input type="text" name="fullName" th:field="*{fullName}"/>
-                    <p th:if="${#fields.hasErrors('fullName')}">Full name should not be empty!</p>
+                    <p th:if="${#fields.hasErrors('fullName')}" th:text="${#fields.errors('fullName')[0]}"></p>
                 </div>
                 <div class="inputBox">
                     <span>Phone number: </span>
                     <input type="tel" name="phoneNumber" th:field="*{phoneNumber}" pattern="[0-9]{10}"/>
+                    <p th:if="${#fields.hasErrors('phoneNumber')}" th:text="${#fields.errors('phoneNumber')[0]}"></p>
                 </div>
                 <div class="inputBox">
                     <span>Country: </span>
                     <input type="text" name="country" th:field="*{country}"/>
+                    <p th:if="${#fields.hasErrors('country')}" th:text="${#fields.errors('country')[0]}"></p>
                 </div>
                 <div class="inputBox">
                     <span>City: </span>
                     <input type="text" name="city" th:field="*{city}"/>
+                    <p th:if="${#fields.hasErrors('city')}" th:text="${#fields.errors('city')[0]}"></p>
                 </div>
                 <div class="inputBox">
                     <span>Address: </span>
                     <input type="text" name="address" th:field="*{address}"/>
+                    <p th:if="${#fields.hasErrors('address')}" th:text="${#fields.errors('address')[0]}"></p>
                 </div>
 
             </div>
