@@ -18,8 +18,6 @@ spring:
     properties:
       hibernate:
         format-sql: true
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
   mvc:
     hidden method:
       filter:
