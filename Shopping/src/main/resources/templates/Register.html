@@ -24,33 +24,35 @@
                 <label>First name</label>
             </div>
             <p th:if="${#fields.hasErrors('firstName')}"
-               class=" errors alertalert-danger">First name is required!</p>
+               class=" errors alertalert-danger" th:text="${#fields.errors('firstName')[0]}"></p>
             <div class="txt_field">
                 <input id="lastName" type="text" name="lastName" th:value="*{lastName}" required>
                 <span></span>
                 <label>Last name</label>
             </div>
             <p th:if="${#fields.hasErrors('lastName')}"
-               class=" errors alertalert-danger">Last name is required!</p>
+               class=" errors alertalert-danger" th:text="${#fields.errors('lastName')[0]}"></p>
             <div class="txt_field">
                 <input type="email" name="email" th:value="*{email}" required>
                 <span></span>
                 <label>Email</label>
             </div>
             <p th:if="${#fields.hasErrors('email')}"
-               class=" errors alertalert-danger">Existing email!</p>
+               class=" errors alertalert-danger" th:text="${#fields.errors('email')[0]}"></p>
             <div class="txt_field">
                 <input type="password" name="password" required>
                 <span></span>
                 <label>Password</label>
             </div>
+            <p th:if="${#fields.hasErrors('password')}"
+               class=" errors alertalert-danger" th:text="${#fields.errors('password')[0]}"></p>
             <div class="txt_field">
                 <input type="tel" id="phoneNumber" name="phoneNumber" th:value="*{phoneNumber}" pattern="[0-9]{10}">
                 <span></span>
                 <label>Phone</label>
             </div>
             <p th:if="${#fields.hasErrors('phoneNumber')}"
-               class=" errors alertalert-danger">Invalid phone number!</p>
+               class=" errors alertalert-danger" th:text="${#fields.errors('password')[0]}"></p>
             <input name="submit" type="Submit" onclick="return error()" value="Sign Up">
             <div class="signup_link">
                 Have an Account ? <a href="/auth/login">Login Here</a>

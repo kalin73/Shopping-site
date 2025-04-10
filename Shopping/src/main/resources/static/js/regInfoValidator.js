@@ -2,17 +2,17 @@ function error() {
     const phone = document.getElementById('phoneNumber').value;
     const firstName = document.getElementById('firstName').value;
     const lastName = document.getElementById('lastName').value;
-    const regex = new RegExp('^[0-9]{10}$');
+    const regex = new RegExp('\\d{10}');
 
     if (!regex.test(phone)) {
-        alert("Error! Phone must be length 10 digits!");
+        alert("Phone number must be 10 digits long!");
     }
 
-    if (firstName.length < 3 || firstName.length > 10) {
-        alert("Error! Wrong first name!");
+    if (firstName.length < 2 || firstName.length > 30) {
+        alert("First name should be at least 2 letters long");
     }
 
-    if (lastName.length < 3 || lastName.length > 10) {
-        alert("Error! Wrong last name!");
+    if (lastName.length < 2 || lastName.length > 30) {
+        alert("Last name should be at least 2 letters long");
     }
 }
