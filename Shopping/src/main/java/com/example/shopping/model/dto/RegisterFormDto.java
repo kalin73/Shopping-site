@@ -4,18 +4,20 @@ import com.example.shopping.validation.ValidatePhoneNumber;
 import com.example.shopping.validation.ValidateUniqueEmail;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 public class RegisterFormDto {
-    @NotBlank
+    @Pattern(regexp = "[A-Za-z]{2,30}", message = "First name should be at least 2 letters long")
     private String firstName;
 
-    @NotBlank
+    @Pattern(regexp = "[A-Za-z]{2,30}", message = "Last name should be at least 2 letters long")
     private String lastName;
 
     @Email
     @ValidateUniqueEmail
     private String email;
 
+    @NotBlank(message = "Passwords should not be empty")
     private String password;
 
     @ValidatePhoneNumber
