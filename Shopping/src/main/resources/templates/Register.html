@@ -17,6 +17,7 @@
 <div class="container">
     <div class="center">
         <h1>Register</h1>
+<!--        TODO Fix error messages placement-->
         <form th:method="POST" th:action="@{/auth/register}" th:object="${registerForm}">
             <div class="txt_field">
                 <input id="firstName" type="text" name="firstName" th:value="*{firstName}" required>
@@ -52,7 +53,7 @@
                 <label>Phone</label>
             </div>
             <p th:if="${#fields.hasErrors('phoneNumber')}"
-               class=" errors alertalert-danger" th:text="${#fields.errors('password')[0]}"></p>
+               class=" errors alertalert-danger" th:text="${#fields.errors('phoneNumber')[0]}"></p>
             <input name="submit" type="Submit" onclick="return error()" value="Sign Up">
             <div class="signup_link">
                 Have an Account ? <a href="/auth/login">Login Here</a>
