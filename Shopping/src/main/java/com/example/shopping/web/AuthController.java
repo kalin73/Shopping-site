@@ -4,12 +4,12 @@ import com.example.shopping.exceptions.ExpiredTokenException;
 import com.example.shopping.model.dto.RegisterFormDto;
 import com.example.shopping.model.dto.UserDto;
 import com.example.shopping.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import static com.example.shopping.utils.Constants.BINDING_RESULT_PATH;
 import static com.example.shopping.utils.Utils.IS_VALID;
@@ -29,19 +29,22 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(@Validated RegisterFormDto registerForm, BindingResult bindingResult,
-                           RedirectAttributes redirectAttributes) {
+    public ModelAndView register(@Validated RegisterFormDto registerForm, BindingResult bindingResult,
+                                 ModelAndView modelAndView) {
 
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("registerForm", registerForm)
-                    .addFlashAttribute(BINDING_RESULT_PATH + "registerForm", bindingResult);
+            modelAndView.addObject("registerForm", registerForm)
+                    .addObject(BINDING_RESULT_PATH + "registerForm", bindingResult);
+            modelAndView.setStatus(HttpStatus.BAD_REQUEST);
+            modelAndView.setViewName("Register");
 
-            return "redirect:/auth/register";
+            return modelAndView;
         }
 
         this.userService.registerUser(registerForm);
+        modelAndView.setViewName("redirect:/");
 
-        return "redirect:/";
+        return modelAndView;
     }
 
     @GetMapping("/verify")
@@ -69,20 +72,22 @@ public class AuthController {
     }
 
     @PostMapping("/forgotPassword")
-    public String forgotPassword(String email, ModelAndView modelAndView, RedirectAttributes redirectAttributes) {
+    public ModelAndView forgotPassword(String email, ModelAndView modelAndView) {
         UserDto user = this.userService.getUserByEmail(email);
 
         if (user == null) {
-            redirectAttributes.addFlashAttribute("invalidEmail", true);
-            modelAndView.setViewName("redirect:/auth/forgotPassword");
+            modelAndView.addObject("invalidEmail", true);
+            modelAndView.setStatus(HttpStatus.BAD_REQUEST);
+            modelAndView.setViewName("forgotPassword");
 
-            return "redirect:/auth/forgotPassword";
+            return modelAndView;
         }
-        redirectAttributes.addFlashAttribute("validEmail", true);
+        modelAndView.addObject("validEmail", true);
+        modelAndView.setViewName("forgotPassword");
 
         userService.sendConfirmationEmail(user);
 
-        return "redirect:/auth/forgotPassword";
+        return modelAndView;
     }
 
     @GetMapping("/changePassword")
@@ -96,29 +101,35 @@ public class AuthController {
     }
 
     @PostMapping("/changePassword")
-    public ModelAndView changePassword(String email, String password, String confirmPassword, RedirectAttributes redirectAttributes, ModelAndView modelAndView) {
+    public ModelAndView changePassword(String email, String password, String confirmPassword, ModelAndView modelAndView) {
         if (password.equals(confirmPassword)) {
             this.userService.changePassword(email, password);
-            modelAndView.setViewName("redirect:/");
+            modelAndView.setViewName("index");
 
             return modelAndView;
         }
-        redirectAttributes.addFlashAttribute("wrongPass", true);
-        modelAndView.setViewName("redirect:/auth/changePassword");
+        modelAndView.addObject("wrongPass", true);
+        modelAndView.setStatus(HttpStatus.BAD_REQUEST);
+        modelAndView.setViewName("changePassword");
 
         return modelAndView;
     }
 
     @PostMapping("/login-error")
-    public String loginError(RedirectAttributes redirectAttributes) {
+    public ModelAndView loginError(ModelAndView modelAndView) {
         if (!IS_VALID) {
-            IS_VALID = true;
-            redirectAttributes.addFlashAttribute("isNotValid", true);
-            return "redirect:/";
+            modelAndView.addObject("isNotValid", true);
+            modelAndView.setStatus(HttpStatus.UNAUTHORIZED);
+            modelAndView.setViewName("index");
+
+            return modelAndView;
         }
 
-        redirectAttributes.addFlashAttribute("bad_credentials", true);
-        return "redirect:/";
+        modelAndView.addObject("bad_credentials", true);
+        modelAndView.setStatus(HttpStatus.BAD_REQUEST);
+        modelAndView.setViewName("index");
+
+        return modelAndView;
     }
 
     @ModelAttribute(name = "registerForm")
