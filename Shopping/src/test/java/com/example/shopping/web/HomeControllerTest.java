@@ -1,4 +1,4 @@
-package com.example.shopping.web.rest;
+package com.example.shopping.web;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +11,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CategoriesControllerTest {
+public class HomeControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void testGetCategoriesPage() throws Exception {
-        mockMvc.perform(get("/categories"))
+    public void getHomePage() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void getAboutUsPage() throws Exception {
+        mockMvc.perform(get("/aboutUs"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void getReviewsPage() throws Exception {
+        mockMvc.perform(get("/reviews"))
                 .andExpect(status().isOk());
     }
 }
