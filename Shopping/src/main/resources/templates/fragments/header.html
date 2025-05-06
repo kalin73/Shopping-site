@@ -50,7 +50,7 @@
             <h3 th:case="null" th:text="'Total: 0'"></h3>
             <h3 th:case="*" th:text="'Total: ' + ${total}"></h3>
         </div>
-        <a href="/order/checkout" class="btn">Checkout</a>
+        <a th:if="${cartItems.size() > 0}" href="/order/checkout" class="btn">Checkout</a>
     </div>
 
     <form sec:authorize="isAnonymous()" th:action="@{/auth/login}" th:method="POST" class="login">
