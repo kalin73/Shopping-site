@@ -73,6 +73,13 @@ public class ShoppingCartService {
         } else {
             this.shoppingItemRepository.deleteById(id);
         }
+
+        List<ShoppingItemEntity> shoppingCartItems = this.shoppingItemRepository.findAllByCart(item.getCart()).orElse(null);
+
+        if (shoppingCartItems != null && shoppingCartItems.isEmpty()) {
+            this.shoppingCartRepository.delete(item.getCart());
+        }
+
         this.shoppingItemService.refreshItems();
     }
 
