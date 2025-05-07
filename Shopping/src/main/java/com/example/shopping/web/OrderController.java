@@ -3,9 +3,11 @@ package com.example.shopping.web;
 import com.example.shopping.model.dto.ApplicationUserDetails;
 import com.example.shopping.model.dto.CreditCardForm;
 import com.example.shopping.model.dto.OrderDto;
+import com.example.shopping.model.dto.ShoppingCartDto;
 import com.example.shopping.model.enums.PaymentMethod;
 import com.example.shopping.service.OrderService;
 import com.example.shopping.service.ShoppingCartService;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import static com.example.shopping.utils.Constants.BINDING_RESULT_PATH;
 import static com.example.shopping.utils.Utils.currentOrder;
@@ -33,24 +34,34 @@ public class OrderController {
     }
 
     @GetMapping("/checkout")
-    public String placeOrder() {
+    public ModelAndView getCheckoutPage(@AuthenticationPrincipal ApplicationUserDetails applicationUserDetails, ModelAndView modelAndView) {
+        ShoppingCartDto shoppingCart = this.shoppingCartService.getShoppingCart(applicationUserDetails.getUsername());
 
-        return "orderCheckout";
+        if (shoppingCart.getCartItems().isEmpty()) {
+            modelAndView.setStatus(HttpStatus.BAD_REQUEST);
+            modelAndView.setViewName("index");
+
+            return modelAndView;
+        }
+
+        modelAndView.setViewName("orderCheckout");
+
+        return modelAndView;
     }
 
     @PostMapping("/placeOrder")
     public ModelAndView placeOrder(@AuthenticationPrincipal ApplicationUserDetails client,
                                    @Validated OrderDto order,
                                    BindingResult bindingResult,
-                                   RedirectAttributes redirectAttributes,
                                    ModelAndView modelAndView) {
         currentOrder = order;
 
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("order", order)
-                    .addFlashAttribute(BINDING_RESULT_PATH + "order", bindingResult);
+            modelAndView.addObject("order", order)
+                    .addObject(BINDING_RESULT_PATH + "order", bindingResult);
 
-            modelAndView.setViewName("redirect:/order/checkout");
+            modelAndView.setStatus(HttpStatus.BAD_REQUEST);
+            modelAndView.setViewName("orderCheckout");
 
             return modelAndView;
         }
@@ -58,6 +69,7 @@ public class OrderController {
         if (order.getPaymentMethod().equals(PaymentMethod.CARD.name())) {
             this.shoppingCartService.loadShoppingCart(modelAndView, client);
             modelAndView.addObject("creditCardForm", new CreditCardForm());
+            modelAndView.setStatus(HttpStatus.valueOf(302));
             modelAndView.setViewName("cardInformation");
 
             return modelAndView;
