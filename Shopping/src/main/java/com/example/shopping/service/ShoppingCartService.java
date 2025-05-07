@@ -92,7 +92,7 @@ public class ShoppingCartService {
     }
 
     public void loadShoppingCart(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
-        List<ShoppingCartItemDto> cartItems = getItems(user);
+        List<ShoppingCartItemDto> cartItems = getItems(user.getUsername());
 
         BigDecimal total = new BigDecimal(0);
 
@@ -104,8 +104,8 @@ public class ShoppingCartService {
         modelAndView.addObject("cartItems", cartItems);
     }
 
-    public ShoppingCartDto getShoppingCart(@AuthenticationPrincipal ApplicationUserDetails user) {
-        List<ShoppingCartItemDto> cartItems = getItems(user);
+    public ShoppingCartDto getShoppingCart(String email) {
+        List<ShoppingCartItemDto> cartItems = getItems(email);
 
         BigDecimal total = new BigDecimal(0);
 
@@ -116,8 +116,8 @@ public class ShoppingCartService {
         return new ShoppingCartDto(cartItems, total);
     }
 
-    private List<ShoppingCartItemDto> getItems(@AuthenticationPrincipal ApplicationUserDetails user) {
-        return user != null ? shoppingItemService.getAllItemsByUser(user.getUsername()) : new ArrayList<>();
+    private List<ShoppingCartItemDto> getItems(String email) {
+        return email != null ? shoppingItemService.getAllItemsByUser(email) : new ArrayList<>();
 
     }
 }
