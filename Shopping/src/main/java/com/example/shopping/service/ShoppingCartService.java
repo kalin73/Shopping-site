@@ -92,16 +92,18 @@ public class ShoppingCartService {
     }
 
     public void loadShoppingCart(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
-        List<ShoppingCartItemDto> cartItems = getItems(user.getUsername());
+        if (user != null) {
+            List<ShoppingCartItemDto> cartItems = getItems(user.getUsername());
 
-        BigDecimal total = new BigDecimal(0);
+            BigDecimal total = new BigDecimal(0);
 
-        for (ShoppingCartItemDto item : cartItems) {
-            total = total.add(item.getAmount());
+            for (ShoppingCartItemDto item : cartItems) {
+                total = total.add(item.getAmount());
+            }
+
+            modelAndView.addObject("total", total);
+            modelAndView.addObject("cartItems", cartItems);
         }
-
-        modelAndView.addObject("total", total);
-        modelAndView.addObject("cartItems", cartItems);
     }
 
     public ShoppingCartDto getShoppingCart(String email) {
