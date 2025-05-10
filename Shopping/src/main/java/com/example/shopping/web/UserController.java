@@ -20,8 +20,8 @@ public class UserController {
     public ModelAndView getProfilePage(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
         UserProfileDto userDto = this.userService.getUserProfile(user.getUsername());
         modelAndView.addObject("email", userDto.getEmail())
-                .addObject("fullName", user.getFullName())
-                .addObject("phoneNumber", user.getPhoneNumber())
+                .addObject("fullName", userDto.getFirstName() + " " + userDto.getLastName())
+                .addObject("phoneNumber", userDto.getPhoneNumber())
                 .addObject("country", userDto.getDeliveryAddresses().get(0).getCountry())
                 .addObject("city", userDto.getDeliveryAddresses().get(0).getCity())
                 .setViewName("profilePage");
