@@ -16,8 +16,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfiguration {
-    private static final String[] OPEN_ENDPOINTS = {"/auth/**", "/", "/add/**", "/api/**", "/products/**", "/reviews", "/product/**", "/categories", "/aboutUs"};
-    private static final String[] SECURED_ENDPOINTS = {"/deleteCart", "/delete/**", "/order/**", "/profile", "/billingAddress", "/creditCard/**"};
+    private static final String[] OPEN_ENDPOINTS = {"/auth/**", "/", "/api/**", "/products/**", "/reviews", "/product/**", "/categories", "/aboutUs"};
+    private static final String[] SECURED_ENDPOINTS = {"/add/**", "/deleteCart", "/delete/**", "/order/**", "/profile", "/billingAddress", "/creditCard/**"};
 
     @Bean
     SecurityFilterChain secFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -30,7 +30,7 @@ public class SecurityConfiguration {
                         .requestMatchers(SECURED_ENDPOINTS)
                         .authenticated())
                 .formLogin(login -> login.loginPage("/auth/login").usernameParameter("email").passwordParameter("password")
-                                .defaultSuccessUrl("/", true).failureForwardUrl("/auth/login-error"))
+                        .defaultSuccessUrl("/", true).failureForwardUrl("/auth/login-error"))
                 .logout(out -> out.logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true))
                 .cors(CorsConfigurer::disable)
                 .csrf(CsrfConfigurer::disable);
