@@ -4,6 +4,7 @@ import com.example.shopping.model.dto.ApplicationUserDetails;
 import com.example.shopping.model.dto.CreditCardForm;
 import com.example.shopping.service.CreditCardService;
 import com.example.shopping.service.OrderService;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -12,12 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import static com.example.shopping.utils.Constants.BINDING_RESULT_PATH;
 import static com.example.shopping.utils.Utils.currentOrder;
 
-// TODO Verify credit card info
 @Controller
 @RequestMapping("/creditCard")
 public class CreditCardController {
@@ -35,26 +35,40 @@ public class CreditCardController {
     }
 
     @PostMapping("/add")
-    public String addCreditCard(@Validated CreditCardForm creditCardForm,
-                                BindingResult bindingResult,
-                                @AuthenticationPrincipal ApplicationUserDetails userDetails) {
+    public ModelAndView addCreditCard(@Validated CreditCardForm creditCardForm,
+                                      BindingResult bindingResult,
+                                      @AuthenticationPrincipal ApplicationUserDetails userDetails,
+                                      ModelAndView modelAndView) {
+
+        if (bindingResult.hasErrors()) {
+            modelAndView.setStatus(HttpStatus.BAD_REQUEST);
+            modelAndView.addObject(BINDING_RESULT_PATH + "creditCardForm", bindingResult);
+            modelAndView.addObject("creditCardForm", creditCardForm);
+            modelAndView.setViewName("cardInformation");
+
+            return modelAndView;
+        }
 
         this.creditCardService.addCreditCard(creditCardForm, userDetails.getUsername());
+        modelAndView.setStatus(HttpStatus.OK);
+        modelAndView.setViewName("index");
 
-        return "redirect:/";
+        return modelAndView;
     }
 
     @PostMapping("/payWithCard")
-    public String payWithCard(boolean save,
-                              @Validated CreditCardForm creditCardForm,
-                              BindingResult bindingResult,
-                              RedirectAttributes redirectAttributes,
-                              @AuthenticationPrincipal ApplicationUserDetails user) {
+    public ModelAndView payWithCard(boolean save,
+                                    @Validated CreditCardForm creditCardForm,
+                                    BindingResult bindingResult,
+                                    ModelAndView modelAndView,
+                                    @AuthenticationPrincipal ApplicationUserDetails user) {
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute(BINDING_RESULT_PATH + "creditCardForm", bindingResult)
-                    .addFlashAttribute("creditCardForm", creditCardForm);
+            modelAndView.setStatus(HttpStatus.BAD_REQUEST);
+            modelAndView.addObject(BINDING_RESULT_PATH + "creditCardForm", bindingResult)
+                    .addObject("creditCardForm", creditCardForm);
+            modelAndView.setViewName("cardInformation");
 
-            return "redirect:/creditCard/cardInformation";
+            return modelAndView;
         }
 
         if (save) {
@@ -65,7 +79,9 @@ public class CreditCardController {
 
         currentOrder = null;
 
-        return "redirect:/";
+        modelAndView.setViewName("redirect:/");
+
+        return modelAndView;
     }
 
     @ModelAttribute(name = "creditCardForm")
