@@ -16,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfiguration {
-    private static final String[] OPEN_ENDPOINTS = {"/auth/**", "/", "/api/**", "/products/**", "/reviews", "/product/**", "/categories", "/aboutUs"};
+    private static final String[] OPEN_ENDPOINTS = {"/auth/**", "/", "/api/**", "/products/**", "/reviews", "/product/**", "/categories", "/aboutUs", "/swagger-ui/**", "swagger-ui.html", "/v3/api-docs/**"};
     private static final String[] SECURED_ENDPOINTS = {"/add/**", "/deleteCart", "/delete/**", "/order/**", "/profile", "/billingAddress", "/creditCard/**"};
 
     @Bean
