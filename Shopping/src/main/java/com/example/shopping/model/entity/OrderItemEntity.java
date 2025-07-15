@@ -6,7 +6,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "oreder_items")
+@Table(name = "order_items")
 public class OrderItemEntity extends BaseEntity {
     @ManyToOne
     private ProductEntity product;
