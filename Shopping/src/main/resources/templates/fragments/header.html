@@ -36,14 +36,14 @@
         <label for="search-box" class="fas fa-search"></label>
     </form>
 
-    <div class="shopping-cart">
+    <div class="shopping-cart" style="max-height: 500px; overflow-y: auto;">
         <div class="box" th:each="item : ${cartItems}" th:object="${item}">
             <a th:href="@{/delete/{id}(id=*{id})}" class="fas fa-trash"></a>
             <img th:src="*{image}"/>
             <div class="content">
                 <h3 th:text="*{productName}"></h3>
-                <span class="price" th:text="*{amount}"></span><br/>
-                <span class="quantity" th:text="*{quantity}"></span>
+                <span class="price" th:text="*{amount}+' лв.'" style="text-transform: lowercase"></span><br/>
+                <span class="quantity" th:text="'x'+*{quantity}" style="text-transform: lowercase"></span>
             </div>
         </div>
         <div th:switch="${total}" class="total">
