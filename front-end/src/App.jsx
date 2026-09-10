@@ -1,62 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { ProductCard } from './components/ProductCard';
 import { CartDrawer } from './components/CartDrawer';
 import { QuickViewModal } from './components/QuickViewModal';
 import { AuthModal } from './components/AuthModal';
-
-// Примерни (mock) данни за IT продукти
-const INITIAL_PRODUCTS = [
-  {
-    id: 1,
-    title: 'Геймърски Лаптоп Lenovo Legion Pro 5',
-    category: 'Лаптопи',
-    price: 2499.99,
-    rating: '4.9',
-    isNew: true,
-    imageUrl: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=600&q=80',
-    description: 'Мощен геймърски лаптоп с процесор AMD Ryzen 7, NVIDIA RTX 4070 и 32GB RAM за безпроблемна игра и работа.'
-  },
-  {
-    id: 2,
-    title: 'Механична Клавиатура Keychron K2 Wireless',
-    category: 'Периферия',
-    price: 189.00,
-    rating: '4.8',
-    isNew: false,
-    imageUrl: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80',
-    description: 'Компактна безжична механична клавиатура с RGB подсветка и сменяеми суичове.'
-  },
-  {
-    id: 3,
-    title: 'Монитор Dell UltraSharp 27" 4K USB-C',
-    category: 'Монитори',
-    price: 899.00,
-    rating: '4.7',
-    isNew: true,
-    imageUrl: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80',
-    description: 'Професионален IPS монитор с 4K резолюция, перфектно цветопредаване и USB-C хъб.'
-  },
-  {
-    id: 4,
-    title: 'Безжична мишка Logitech MX Master 3S',
-    category: 'Периферия',
-    price: 219.00,
-    rating: '5.0',
-    isNew: false,
-    imageUrl: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80',
-    description: 'Ергономична безжична мишка за максимална продуктивност и тихо щракване.'
-  }
-];
+import { getAllProducts } from './services/api';
 
 export default function App() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState(null);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
 
-  // Добавяне в количката
+  // Извличане на продуктите от Spring Boot API при зареждане на страницата
+  useEffect(() => {
+    getAllProducts()
+        .then((data) => {
+          setProducts(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("Грешка при връзката с бекенд API:", err);
+          setError("Не успяхме да заредим продуктите от сървъра.");
+          setLoading(false);
+        });
+  }, []);
+
+  // Добавяне на продукт в количката
   const handleAddToCart = (product) => {
     setCart((prev) => {
       const existing = prev.find((item) => item.id === product.id);
@@ -70,7 +45,7 @@ export default function App() {
     setIsCartOpen(true);
   };
 
-  // Промяна на количество в количката
+  // Промяна на количество на артикул в количката
   const handleUpdateQuantity = (id, newQty) => {
     if (newQty <= 0) {
       handleRemoveFromCart(id);
@@ -81,23 +56,23 @@ export default function App() {
     );
   };
 
-  // Премахване от количката
+  // Премахване на артикул от количката
   const handleRemoveFromCart = (id) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
   return (
       <ThemeProvider>
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+        <div className="w-full min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
 
-          {/* Навигация */}
+          {/* Навигационна лента */}
           <Navbar
               cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
               onOpenCart={() => setIsCartOpen(true)}
               onOpenAuth={() => setIsAuthOpen(true)}
           />
 
-          {/* Hero Секция */}
+          {/* Главна банeр / Hero секция */}
           <header className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 text-center">
           <span className="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-950/60 px-3 py-1 rounded-full">
             IT Магазин от ново поколение
@@ -119,19 +94,44 @@ export default function App() {
               <h2 className="text-2xl font-extrabold">Популярни продукти</h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {INITIAL_PRODUCTS.map((product) => (
-                  <ProductCard
-                      key={product.id}
-                      product={product}
-                      onAddToCart={handleAddToCart}
-                      onQuickView={(p) => setQuickViewProduct(p)}
-                  />
-              ))}
-            </div>
+            {/* Индикатор за зареждане */}
+            {loading && (
+                <div className="text-center py-16">
+                  <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-blue-600 border-t-transparent mb-4"></div>
+                  <p className="text-slate-500 dark:text-slate-400">Зареждане на продуктите от сървъра...</p>
+                </div>
+            )}
+
+            {/* Съобщение за грешка */}
+            {error && (
+                <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 text-red-600 dark:text-red-400 p-6 rounded-2xl text-center my-8">
+                  <p className="font-semibold">{error}</p>
+                  <p className="text-xs mt-1 text-slate-500">Уверете се, че Spring Boot бекендът работи на http://localhost:8080</p>
+                </div>
+            )}
+
+            {/* Решетка с продукти */}
+            {!loading && !error && (
+                products.length > 0 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                      {products.map((product) => (
+                          <ProductCard
+                              key={product.id}
+                              product={product}
+                              onAddToCart={handleAddToCart}
+                              onQuickView={(p) => setQuickViewProduct(p)}
+                          />
+                      ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-16 text-slate-500">
+                      Все още няма налични продукти в базата данни.
+                    </div>
+                )
+            )}
           </main>
 
-          {/* Модали & Изскачащи панели */}
+          {/* Изскачащи прозорци и панел за количка */}
           <CartDrawer
               isOpen={isCartOpen}
               onClose={() => setIsCartOpen(false)}
