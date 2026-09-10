@@ -1,71 +1,80 @@
 import React from 'react';
-import { ShoppingCart, Eye, Star } from 'lucide-react';
+import { Eye, ShoppingBag } from 'lucide-react';
 
-export const ProductCard = ({ product, onAddToCart, onQuickView }) => {
+export function ProductCard({ product, onAddToCart, onQuickView }) {
+    // Базов адрес на бекенда за зареждане на статични изображения
+    const BACKEND_URL = 'http://localhost:8080';
+
+    // Ако снимката започва с /images, долепяме хоста
+    const fullImageUrl = product.image
+        ? product.image.startsWith('http')
+            ? product.image
+            : `${BACKEND_URL}${product.image}`
+        : 'https://via.placeholder.com/300x300?text=No+Image';
+
     return (
-        <div className="group relative bg-white dark:bg-slate-800/80 rounded-2xl p-4 border border-slate-200 dark:border-slate-700/60 shadow-sm hover:shadow-xl dark:hover:shadow-blue-900/10 transition-all duration-300 flex flex-col justify-between">
-            <div>
-                {/* Badge */}
-                {product.isNew && (
-                    <span className="absolute top-6 left-6 z-10 bg-blue-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
-            Ново
+        <div className="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between">
+
+            {/* Изображение и бързи действия */}
+            <div className="relative aspect-square overflow-hidden bg-slate-100 dark:bg-slate-950 flex items-center justify-center p-4">
+                <img
+                    src={fullImageUrl}
+                    alt={product.productName}
+                    className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500"
+                />
+
+                {/* Индикатор за наличност */}
+                {product.quantity > 0 ? (
+                    <span className="absolute top-3 left-3 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-semibold px-2.5 py-1 rounded-full border border-emerald-500/20 backdrop-blur-md">
+            В наличност ({product.quantity})
+          </span>
+                ) : (
+                    <span className="absolute top-3 left-3 bg-red-500/10 text-red-600 dark:text-red-400 text-xs font-semibold px-2.5 py-1 rounded-full border border-red-500/20 backdrop-blur-md">
+            Изчерпан
           </span>
                 )}
 
-                {/* Product Image Container */}
-                <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-900 mb-4 flex items-center justify-center">
-                    <img
-                        src={product.imageUrl || '/placeholder.png'}
-                        alt={product.title}
-                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                    />
-
-                    {/* Quick View Overlay */}
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                        <button
-                            onClick={() => onQuickView(product)}
-                            className="p-2.5 bg-white text-slate-900 rounded-full hover:bg-slate-100 transition shadow-lg"
-                            title="Бърз преглед"
-                        >
-                            <Eye size={18} />
-                        </button>
-                    </div>
-                </div>
-
-                {/* Category & Title */}
-                <span className="text-xs font-medium text-blue-600 dark:text-blue-400 tracking-wider uppercase">
-          {product.category}
-        </span>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mt-1 line-clamp-2">
-                    {product.title}
-                </h3>
-
-                {/* Rating */}
-                <div className="flex items-center gap-1 mt-2 text-amber-400">
-                    <Star size={16} fill="currentColor" />
-                    <span className="text-xs font-semibold text-slate-600 dark:text-slate-400">
-            {product.rating || '4.8'}
-          </span>
-                </div>
+                {/* Бутон за Бърз Преглед */}
+                <button
+                    onClick={() => onQuickView(product)}
+                    className="absolute right-3 top-3 bg-white/80 dark:bg-slate-800/80 p-2 rounded-full text-slate-700 dark:text-slate-200 opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-white dark:hover:bg-slate-800 shadow-md backdrop-blur-sm"
+                    title="Бърз преглед"
+                >
+                    <Eye size={18} />
+                </button>
             </div>
 
-            {/* Price and Add to Cart */}
-            <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex items-center justify-between">
+            {/* Информация за продукта */}
+            <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
-                    <span className="text-xs text-slate-400 block">Цена</span>
-                    <span className="text-xl font-extrabold text-slate-900 dark:text-white">
-            {product.price.toFixed(2)} лв.
-          </span>
+                    <h3 className="font-bold text-slate-800 dark:text-slate-100 text-base line-clamp-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                        {product.productName}
+                    </h3>
                 </div>
 
-                <button
-                    onClick={() => onAddToCart(product)}
-                    className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl font-medium transition active:scale-95 shadow-md shadow-blue-500/20"
-                >
-                    <ShoppingCart size={18} />
-                    <span className="hidden sm:inline">Купи</span>
-                </button>
+                {/* Цена и Бутон Добави */}
+                <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
+                    <div>
+                        <span className="text-xs text-slate-400 block font-medium">Цена</span>
+                        <span className="text-lg font-black text-slate-900 dark:text-white">
+              {product.price?.toFixed(2)} лв.
+            </span>
+                    </div>
+
+                    <button
+                        onClick={() => onAddToCart(product)}
+                        disabled={product.quantity <= 0}
+                        className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 shadow-sm ${
+                            product.quantity > 0
+                                ? 'bg-blue-600 hover:bg-blue-700 text-white hover:shadow-blue-500/20 active:scale-95'
+                                : 'bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed'
+                        }`}
+                    >
+                        <ShoppingBag size={16} />
+                        <span>{product.quantity > 0 ? 'Купи' : 'Изчерпан'}</span>
+                    </button>
+                </div>
             </div>
         </div>
     );
-};
+}
