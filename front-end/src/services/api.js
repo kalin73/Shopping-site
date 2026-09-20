@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-// Базова конфигурация за връзка със Spring Boot бекенда (localhost:8080)
+// Относителен baseURL - Vite прокси-ва към Spring Boot (виж vite.config.js),
+// за да избегнем CORS проблеми в development
 const API = axios.create({
-    baseURL: 'http://localhost:8080/api',
+    baseURL: '/api',
     withCredentials: true, // Нужно за Spring Security сесии / кукита
     headers: {
         'Content-Type': 'application/json',
@@ -13,28 +14,16 @@ const API = axios.create({
    1. ПРОДУКТИ (Products Endpoints)
    ========================================================================== */
 
-/**
- * Взима всички продукти
- * GET: /api/product
- */
 export const getAllProducts = async () => {
     const response = await API.get('/products');
     return response.data;
 };
 
-/**
- * Взима продукти от специфична категория
- * GET: /api/product/{catId}
- */
 export const getProductsByCategory = async (catId) => {
     const response = await API.get(`/products/${catId}`);
     return response.data;
 };
 
-/**
- * Взима подробна информация за конкретен продукт
- * GET: /api/product/info/{id}
- */
 export const getProductById = async (id) => {
     const response = await API.get(`/product/info/${id}`);
     return response.data;
@@ -46,31 +35,51 @@ export const getProductById = async (id) => {
 
 /**
  * Вход в системата (Login)
- * POST: /api/auth/login (или модифицирай пътя според твоя Spring Controller)
+ * Бекендът НЕ е JSON REST ендпойнт - използва Spring Security form login:
+ * POST /login (root, не е под /api), form-urlencoded, полета "email" и "password"
+ * (виж SecurityConfiguration: usernameParameter("email").passwordParameter("password"))
+ * Успех -> 302 redirect към "/", следван автоматично (крайният статус е 200).
+ * Грешка -> сървърът прави forward към /auth/login-error, който връща 401/400 директно.
  */
-export const loginUser = async (credentials) => {
-    // credentials: { username/email, password }
-    const response = await API.post('/auth/login', credentials);
-    return response.data;
+export const loginUser = async ({ email, password }) => {
+    const params = new URLSearchParams();
+    params.append('email', email);
+    params.append('password', password);
+
+    try {
+        await axios.post('/login', params, { withCredentials: true });
+        return { success: true };
+    } catch (err) {
+        throw new Error(
+            err.response?.status === 401
+                ? 'Грешен имейл или парола.'
+                : 'Възникна грешка при вход. Опитайте отново.'
+        );
+    }
 };
 
 /**
  * Регистрация на нов потребител
- * POST: /api/auth/register
+ * POST: /api/auth/register (реален ендпойнт, вече съвпада коректно)
  */
 export const registerUser = async (userData) => {
-    // userData: { username, email, password }
     const response = await API.post('/auth/register', userData);
     return response.data;
 };
 
 /**
- * Изход от системата (Logout)
- * POST: /api/auth/logout
+ * Изход от системата
+ * POST /logout (root, конфигуриран директно в SecurityConfiguration)
  */
 export const logoutUser = async () => {
-    const response = await API.post('/auth/logout');
-    return response.data;
+    await axios.post('/logout', null, { withCredentials: true });
 };
+
+/**
+ * URL за старт на Google вход (Spring Security OAuth2 Client конвенция).
+ * ВАЖНО: изисква бекендът да има spring-boot-starter-oauth2-client
+ * и регистриран "google" client - все още НЕ е направено в бекенда.
+ */
+export const getGoogleLoginUrl = () => '/oauth2/authorization/google';
 
 export default API;
