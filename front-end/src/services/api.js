@@ -60,11 +60,21 @@ export const loginUser = async ({ email, password }) => {
 
 /**
  * Регистрация на нов потребител
- * POST: /api/auth/register (реален ендпойнт, вече съвпада коректно)
+ * POST: /api/auth/register
+ * Бекендът не връща структурирани грешки (липсва @Valid + global handler),
+ * затова 500 се третира като "вероятно вече регистриран имейл" - предположение, не гаранция.
  */
 export const registerUser = async (userData) => {
-    const response = await API.post('/auth/register', userData);
-    return response.data;
+    try {
+        const response = await API.post('/auth/register', userData);
+        return response.data;
+    } catch (err) {
+        throw new Error(
+            err.response?.status === 500
+                ? 'Регистрацията не бе успешна. Възможно е този имейл вече да е регистриран.'
+                : 'Възникна грешка при регистрацията. Опитайте отново.'
+        );
+    }
 };
 
 /**
