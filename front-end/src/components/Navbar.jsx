@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ShoppingBag, Search, Moon, Sun, User, Menu, X } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
-export const Navbar = ({ cartCount, onOpenCart }) => {
+export const Navbar = ({ cartCount, onOpenCart, onOpenAuth }) => {
     const { theme, toggleTheme } = useTheme();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -36,13 +36,14 @@ export const Navbar = ({ cartCount, onOpenCart }) => {
                             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
                         </button>
 
-                        {/* Profile */}
-                        <a
-                            href="#login"
+                        {/* Profile / Login */}
+                        <button
+                            onClick={onOpenAuth}
                             className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition"
+                            aria-label="Вход в профила"
                         >
                             <User size={20} />
-                        </a>
+                        </button>
 
                         {/* Cart Button with Counter */}
                         <button
