@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { X, Mail, Lock, User, ArrowRight, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
-import { loginUser, getGoogleLoginUrl } from '../services/api';
+import { X, Mail, Lock, User, Phone, ArrowRight, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
+import { loginUser, registerUser, getGoogleLoginUrl } from '../services/api';
 
 const GoogleIcon = () => (
     <svg width="18" height="18" viewBox="0 0 48 48">
@@ -11,35 +11,67 @@ const GoogleIcon = () => (
     </svg>
 );
 
+const NAME_PATTERN = /^[A-Za-z]{2,30}$/;
+const PHONE_PATTERN = /^\d{10}$/;
+
 export const AuthModal = ({ isOpen, onClose, onLoginSuccess }) => {
     const [isLogin, setIsLogin] = useState(true);
     const [isRegistered, setIsRegistered] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
-    const [formData, setFormData] = useState({ email: '', password: '', username: '' });
+    const [formData, setFormData] = useState({
+        firstName: '', lastName: '', email: '', phoneNumber: '', password: '', confirmPassword: '',
+    });
 
     if (!isOpen) return null;
 
     const handleGoogleLogin = () => {
-        // Пренасочва към бекенда - изисква OAuth2 client конфигурация там
         window.location.href = getGoogleLoginUrl();
+    };
+
+    const validateRegisterForm = () => {
+        if (!NAME_PATTERN.test(formData.firstName)) return 'Собственото име трябва да е поне 2 латински букви.';
+        if (!NAME_PATTERN.test(formData.lastName)) return 'Фамилията трябва да е поне 2 латински букви.';
+        if (!PHONE_PATTERN.test(formData.phoneNumber)) return 'Телефонният номер трябва да съдържа точно 10 цифри.';
+        if (formData.password.length < 6) return 'Паролата трябва да е поне 6 символа.';
+        if (formData.password !== formData.confirmPassword) return 'Паролите не съвпадат.';
+        return null;
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMsg('');
 
-        if (!isLogin) {
-            // TODO: реална регистрация през registerUser() - извън обхвата на тази задача
-            setIsRegistered(true);
+        if (isLogin) {
+            setIsSubmitting(true);
+            try {
+                await loginUser({ email: formData.email, password: formData.password });
+                onLoginSuccess?.();
+                onClose();
+            } catch (err) {
+                setErrorMsg(err.message);
+            } finally {
+                setIsSubmitting(false);
+            }
+            return;
+        }
+
+        const validationError = validateRegisterForm();
+        if (validationError) {
+            setErrorMsg(validationError);
             return;
         }
 
         setIsSubmitting(true);
         try {
-            await loginUser({ email: formData.email, password: formData.password });
-            onLoginSuccess?.();
-            onClose();
+            await registerUser({
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                phoneNumber: formData.phoneNumber,
+                password: formData.password,
+            });
+            setIsRegistered(true);
         } catch (err) {
             setErrorMsg(err.message);
         } finally {
@@ -51,7 +83,7 @@ export const AuthModal = ({ isOpen, onClose, onLoginSuccess }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div onClick={onClose} className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
-            <div className="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl z-10">
+            <div className="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl z-10 max-h-[90vh] overflow-y-auto">
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 p-2 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition"
@@ -106,20 +138,53 @@ export const AuthModal = ({ isOpen, onClose, onLoginSuccess }) => {
 
                         <form onSubmit={handleSubmit} className="space-y-4">
                             {!isLogin && (
-                                <div>
-                                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase">Потребителско име</label>
-                                    <div className="relative mt-1">
-                                        <User size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                                        <input
-                                            type="text"
-                                            required
-                                            value={formData.username}
-                                            onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                                            placeholder="john_doe"
-                                            className="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-sm focus:outline-none focus:border-blue-500"
-                                        />
+                                <>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase">Име</label>
+                                            <div className="relative mt-1">
+                                                <User size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                                                <input
+                                                    type="text"
+                                                    required
+                                                    value={formData.firstName}
+                                                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                                                    placeholder="Ivan"
+                                                    className="w-full pl-10 pr-3 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-sm focus:outline-none focus:border-blue-500"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase">Фамилия</label>
+                                            <div className="mt-1">
+                                                <input
+                                                    type="text"
+                                                    required
+                                                    value={formData.lastName}
+                                                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                                                    placeholder="Ivanov"
+                                                    className="w-full px-3 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-sm focus:outline-none focus:border-blue-500"
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+
+                                    <div>
+                                        <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase">Телефонен номер</label>
+                                        <div className="relative mt-1">
+                                            <Phone size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                                            <input
+                                                type="tel"
+                                                required
+                                                maxLength={10}
+                                                value={formData.phoneNumber}
+                                                onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value.replace(/\D/g, '') })}
+                                                placeholder="0888123456"
+                                                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-sm focus:outline-none focus:border-blue-500"
+                                            />
+                                        </div>
+                                    </div>
+                                </>
                             )}
 
                             <div>
@@ -151,6 +216,23 @@ export const AuthModal = ({ isOpen, onClose, onLoginSuccess }) => {
                                     />
                                 </div>
                             </div>
+
+                            {!isLogin && (
+                                <div>
+                                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase">Потвърди парола</label>
+                                    <div className="relative mt-1">
+                                        <Lock size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                                        <input
+                                            type="password"
+                                            required
+                                            value={formData.confirmPassword}
+                                            onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                                            placeholder="••••••••"
+                                            className="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-sm focus:outline-none focus:border-blue-500"
+                                        />
+                                    </div>
+                                </div>
+                            )}
 
                             <button
                                 type="submit"
