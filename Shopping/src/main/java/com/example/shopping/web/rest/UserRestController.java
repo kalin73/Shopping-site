@@ -21,7 +21,7 @@ public class UserRestController {
     }
 
     @GetMapping
-    public ResponseEntity<UserProfileDto> getAllUsers(@AuthenticationPrincipal ApplicationUserDetails authUser) {
+    public ResponseEntity<UserProfileDto> getUserProfile(@AuthenticationPrincipal ApplicationUserDetails authUser) {
         if (authUser == null) {
             return ResponseEntity.status(401).build();
         }
