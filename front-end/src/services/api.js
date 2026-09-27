@@ -25,7 +25,7 @@ export const getProductsByCategory = async (catId) => {
 };
 
 export const getProductById = async (id) => {
-    const response = await API.get(`/product/info/${id}`);
+    const response = await API.get(`/products/info/${id}`);
     return response.data;
 };
 
@@ -101,15 +101,22 @@ export const logoutUser = async () => {
 
 /**
  * Текущо логнат потребител
- * GET /api/user - очаква 401/403 ако няма логнат потребител (виж бележката в чата)
+ * GET /api/user - вече е SECURED_ENDPOINT. За неавтентикиран потребител Spring
+ * Security пренасочва (абсолютен cross-origin redirect) към /auth/login, преди
+ * заявката изобщо да стигне контролера - същият CORS проблем както при login,
+ * затова и тук fetch() с redirect: 'manual'.
  */
 export const getCurrentUser = async () => {
-    try {
-        const response = await API.get('/user');
-        return response.data;
-    } catch (err) {
+    const response = await fetch('/api/user', {
+        credentials: 'include',
+        redirect: 'manual',
+    });
+
+    if (response.type === 'opaqueredirect' || !response.ok) {
         return null;
     }
+
+    return response.json();
 };
 
 /**
