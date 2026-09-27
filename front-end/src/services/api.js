@@ -35,27 +35,36 @@ export const getProductById = async (id) => {
 
 /**
  * Вход в системата (Login)
- * Бекендът НЕ е JSON REST ендпойнт - използва Spring Security form login:
- * POST /login (root, не е под /api), form-urlencoded, полета "email" и "password"
- * (виж SecurityConfiguration: usernameParameter("email").passwordParameter("password"))
- * Успех -> 302 redirect към "/", следван автоматично (крайният статус е 200).
- * Грешка -> сървърът прави forward към /auth/login-error, който връща 401/400 директно.
+ * POST /auth/login, form-urlencoded, полета "email" и "password"
+ * ВАЖНО: Spring Security отговаря с 302 redirect към АБСОЛЮТЕН URL
+ * (http://localhost:8080/...) при успех, а не относителен път. axios/XHR следва
+ * редиректи автоматично, което го превръща в истинска cross-origin заявка и CORS
+ * я блокира (CORS е изключен в бекенда). Затова тук се ползва fetch() с
+ * redirect: 'manual' - НЕ следваме редиректа; "opaqueredirect" = успешен вход.
+ * Грешка -> сървърът прави forward (не redirect) към /auth/login-error,
+ * който връща 401/400 директно, без пренасочване - там няма CORS проблем.
  */
 export const loginUser = async ({ email, password }) => {
     const params = new URLSearchParams();
     params.append('email', email);
     params.append('password', password);
 
-    try {
-        await axios.post('/login', params, { withCredentials: true });
+    const response = await fetch('/auth/login', {
+        method: 'POST',
+        body: params,
+        credentials: 'include',
+        redirect: 'manual',
+    });
+
+    if (response.type === 'opaqueredirect' || response.ok) {
         return { success: true };
-    } catch (err) {
-        throw new Error(
-            err.response?.status === 401
-                ? 'Грешен имейл или парола.'
-                : 'Възникна грешка при вход. Опитайте отново.'
-        );
     }
+
+    throw new Error(
+        response.status === 401
+            ? 'Грешен имейл или парола.'
+            : 'Възникна грешка при вход. Опитайте отново.'
+    );
 };
 
 /**
@@ -79,10 +88,15 @@ export const registerUser = async (userData) => {
 
 /**
  * Изход от системата
- * POST /logout (root, конфигуриран директно в SecurityConfiguration)
+ * POST /logout - същият проблем като login (logoutSuccessUrl генерира абсолютен
+ * cross-origin redirect), затова и тук fetch() с redirect: 'manual'.
  */
 export const logoutUser = async () => {
-    await axios.post('/logout', null, { withCredentials: true });
+    await fetch('/logout', {
+        method: 'POST',
+        credentials: 'include',
+        redirect: 'manual',
+    });
 };
 
 /**
