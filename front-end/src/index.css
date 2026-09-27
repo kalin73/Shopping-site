@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Премахва подразбиращите се полета на браузъра */
 html, body, #root {
   width: 100%;
