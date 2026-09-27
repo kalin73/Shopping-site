@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/products")
 @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 public class ProductsRestController {
     private final ProductService productService;
@@ -24,14 +24,14 @@ public class ProductsRestController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/products")
+    @GetMapping
     public ResponseEntity<List<ProductViewDto>> getAllProducts() {
         List<ProductViewDto> products = this.productService.getAllProducts();
 
         return ResponseEntity.ok(products);
     }
 
-    @GetMapping("/products/{catId}")
+    @GetMapping("/{catId}")
     public ResponseEntity<List<ProductViewDto>> getAllProductsFromCategory(@PathVariable(name = "catId") Long catId) {
         if (categoryId != catId) {
             this.productService.refreshProductsByCategory();
@@ -44,7 +44,7 @@ public class ProductsRestController {
         return ResponseEntity.ok(products);
     }
 
-    @GetMapping("/product/info/{id}")
+    @GetMapping("/info/{id}")
     public ResponseEntity<DetailedProductViewDto> getProductById(@PathVariable(name = "id") Long id) {
         Optional<DetailedProductViewDto> product = this.productService.getProductById(id);
 
