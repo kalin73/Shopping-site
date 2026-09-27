@@ -100,6 +100,19 @@ export const logoutUser = async () => {
 };
 
 /**
+ * Текущо логнат потребител
+ * GET /api/user - очаква 401/403 ако няма логнат потребител (виж бележката в чата)
+ */
+export const getCurrentUser = async () => {
+    try {
+        const response = await API.get('/user');
+        return response.data;
+    } catch (err) {
+        return null;
+    }
+};
+
+/**
  * URL за старт на Google вход (Spring Security OAuth2 Client конвенция).
  * ВАЖНО: изисква бекендът да има spring-boot-starter-oauth2-client
  * и регистриран "google" client - все още НЕ е направено в бекенда.

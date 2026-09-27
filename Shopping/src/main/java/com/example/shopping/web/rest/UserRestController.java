@@ -1,8 +1,7 @@
 package com.example.shopping.web.rest;
 
-import com.example.shopping.model.dto.UserDto;
+import com.example.shopping.model.dto.ApplicationUserDetails;
 import com.example.shopping.model.dto.UserProfileDto;
-import com.example.shopping.model.entity.UserEntity;
 import com.example.shopping.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,8 +21,12 @@ public class UserRestController {
     }
 
     @GetMapping
-    public ResponseEntity<UserProfileDto> getAllUsers(@AuthenticationPrincipal UserEntity authUser) {
-        UserProfileDto user = userService.getUserProfile(authUser.getEmail());
+    public ResponseEntity<UserProfileDto> getAllUsers(@AuthenticationPrincipal ApplicationUserDetails authUser) {
+        if (authUser == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        UserProfileDto user = userService.getUserProfile(authUser.getUsername());
 
         return ResponseEntity.ok(user);
     }

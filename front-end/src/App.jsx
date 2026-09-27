@@ -7,7 +7,7 @@ import { QuickViewModal } from './components/QuickViewModal';
 import { AuthModal } from './components/AuthModal';
 import { HomePage } from './pages/HomePage';
 import { ProductPage } from './pages/ProductPage';
-import { getAllProducts } from './services/api';
+import { getAllProducts, getCurrentUser, logoutUser } from './services/api';
 
 export default function App() {
   const [products, setProducts] = useState([]);
@@ -18,6 +18,8 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState(null);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     getAllProducts()
@@ -31,6 +33,21 @@ export default function App() {
           setLoading(false);
         });
   }, []);
+
+  useEffect(() => {
+    // Проверява дали вече има активна сесия (напр. след презареждане на страницата)
+    getCurrentUser().then(setUser);
+  }, []);
+
+  const handleLoginSuccess = async () => {
+    const me = await getCurrentUser();
+    setUser(me);
+  };
+
+  const handleLogout = async () => {
+    await logoutUser();
+    setUser(null);
+  };
 
   const handleAddToCart = (product) => {
     setCart((prev) => {
@@ -67,6 +84,8 @@ export default function App() {
               cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
               onOpenCart={() => setIsCartOpen(true)}
               onOpenAuth={() => setIsAuthOpen(true)}
+              user={user}
+              onLogout={handleLogout}
           />
 
           <Routes>
@@ -105,6 +124,7 @@ export default function App() {
           <AuthModal
               isOpen={isAuthOpen}
               onClose={() => setIsAuthOpen(false)}
+              onLoginSuccess={handleLoginSuccess}
           />
 
         </div>
