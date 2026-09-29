@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ShoppingBag, Moon, Sun, User, Menu, X, LogOut, ChevronDown } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -22,15 +23,15 @@ export const Navbar = ({ cartCount, onOpenCart, onOpenAuth, user, onLogout }) =>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
 
-                    <div className="flex items-center gap-2">
+                    <Link to="/" className="flex items-center gap-2">
                         <span className="text-2xl font-black bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent">
                             ITStore
                         </span>
-                    </div>
+                    </Link>
 
                     <div className="hidden md:flex items-center gap-8 font-medium text-slate-700 dark:text-slate-200">
-                        <a href="#" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Начало</a>
-                        <a href="#categories" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Категории</a>
+                        <Link to="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Начало</Link>
+                        <Link to="/categories" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Категории</Link>
                         <a href="#products" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Продукти</a>
                     </div>
 
@@ -119,7 +120,7 @@ export const Navbar = ({ cartCount, onOpenCart, onOpenAuth, user, onLogout }) =>
 
             {isMobileMenuOpen && (
                 <div className="md:hidden px-4 pt-2 pb-4 space-y-2 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                    <a href="#" className="block py-2 text-slate-700 dark:text-slate-200">Начало</a>
+                    <Link to="/" className="block py-2 text-slate-700 dark:text-slate-200" onClick={() => setIsMobileMenuOpen(false)}>Начало</Link>
                     <a href="#categories" className="block py-2 text-slate-700 dark:text-slate-200">Категории</a>
                     <a href="#products" className="block py-2 text-slate-700 dark:text-slate-200">Продукти</a>
                 </div>
